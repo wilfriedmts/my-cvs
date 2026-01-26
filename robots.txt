@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /aero/
+Disallow: /dev/
+Disallow: /cover-dev/

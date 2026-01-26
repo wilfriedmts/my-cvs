@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Wilfried METAIS - CV</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 50px 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+
+        .cv-links {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .cv-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 25px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cv-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+        }
+
+        .cv-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-color: #667eea;
+        }
+
+        .cv-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .cv-card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cv-title {
+            font-size: 1.5em;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .cv-description {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .cv-card:hover .cv-title {
+            color: #667eea;
+        }
+
+        .arrow {
+            float: right;
+            font-size: 1.5em;
+            color: #667eea;
+            transition: transform 0.3s ease;
+        }
+
+        .cv-card:hover .arrow {
+            transform: translateX(5px);
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 25px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .cv-title {
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CV de Wilfried METAIS</h1>
+        <p class="subtitle">Sélectionnez le CV que vous souhaitez consulter</p>
+        
+        <div class="cv-links">
+            <a href="./aero/index.html" class="cv-card">
+                <div class="cv-card-content">
+                    <span class="arrow">→</span>
+                    <div class="cv-title">CV Aéronautique</div>
+                    <div class="cv-description">Parcours et expériences aéronautiques</div>
+                </div>
+            </a>
+
+            <a href="./dev/index.html" class="cv-card">
+                <div class="cv-card-content">
+                    <span class="arrow">→</span>
+                    <div class="cv-title">CV Développement</div>
+                    <div class="cv-description">Conception et Développement d'Applications Web</div>
+                </div>
+            </a>
+
+            <a href="./cover-dev/index.html" class="cv-card">
+                <div class="cv-card-content">
+                    <span class="arrow">→</span>
+                    <div class="cv-title">Lettre de Motivation Dev</div>
+                    <div class="cv-description">Lettre de motivation CDA</div>
+                </div>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

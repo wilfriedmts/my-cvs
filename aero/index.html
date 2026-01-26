@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Wilfried METAIS - Pilote Professionnel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        @media print {
+            .no-print { display: none; }
+            body { 
+                print-color-adjust: exact; 
+                -webkit-print-color-adjust: exact;
+                padding: 0 !important;
+            }
+            
+            /* En-tête réduit */
+            .gradient-bg {
+                background: #667eea !important;
+                padding: 1rem !important;
+            }
+            
+            .aviation-pattern {
+                background-image: none !important;
+            }
+            
+            /* Logo plus petit */
+            .print-logo {
+                width: 60px !important;
+                height: 60px !important;
+            }
+            
+            .print-logo svg {
+                width: 40px !important;
+                height: 40px !important;
+            }
+            
+            /* Titre réduit */
+            .print-title {
+                font-size: 1.5rem !important;
+                margin-bottom: 0.25rem !important;
+            }
+            
+            .print-subtitle {
+                font-size: 0.875rem !important;
+                margin-bottom: 0.25rem !important;
+            }
+            
+            .print-info {
+                font-size: 0.75rem !important;
+                margin-bottom: 0.5rem !important;
+            }
+            
+            .print-contacts {
+                font-size: 0.7rem !important;
+                gap: 0.5rem !important;
+            }
+            
+            .print-contacts svg {
+                width: 0.75rem !important;
+                height: 0.75rem !important;
+            }
+            
+            /* Statistiques réduites */
+            .print-stats {
+                padding: 0.75rem !important;
+                gap: 0.5rem !important;
+            }
+            
+            .print-stat-card {
+                padding: 0.5rem !important;
+            }
+            
+            .print-stat-number {
+                font-size: 1.25rem !important;
+                margin-bottom: 0.25rem !important;
+            }
+            
+            .print-stat-label {
+                font-size: 0.7rem !important;
+            }
+            
+            /* Contenu principal plus compact */
+            .print-content {
+                padding: 1rem 1.5rem !important;
+            }
+            
+            /* Sections */
+            .print-section {
+                margin-bottom: 1rem !important;
+            }
+            
+            .print-section h3 {
+                font-size: 1.25rem !important;
+                margin-bottom: 0.5rem !important;
+                padding-bottom: 0.25rem !important;
+            }
+            
+            /* Saut de page avant Répartition */
+            .page-break-before {
+                page-break-before: always !important;
+                break-before: page !important;
+            }
+            
+            /* Graphiques réduits */
+            .print-chart-container {
+                margin-bottom: 1rem !important;
+            }
+            
+            .print-chart {
+                transform: scale(0.7);
+                transform-origin: center;
+            }
+            
+            .print-chart-title {
+                font-size: 0.875rem !important;
+                margin-bottom: 0.5rem !important;
+            }
+            
+            /* Tableaux plus compacts */
+            table {
+                font-size: 0.75rem !important;
+            }
+            
+            table th, table td {
+                padding: 0.25rem 0.5rem !important;
+            }
+            
+            /* Footer réduit */
+            .print-footer {
+                padding: 0.5rem !important;
+                font-size: 0.7rem !important;
+            }
+            
+            /* Espacement des sections */
+            .print-experience, .print-formation {
+                font-size: 0.85rem !important;
+            }
+            
+            .print-experience > div, .print-formation > div {
+                margin-bottom: 0.5rem !important;
+            }
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        }
+        
+        .aviation-pattern {
+            background-image: 
+                linear-gradient(30deg, rgba(255,255,255,.05) 12%, transparent 12.5%, transparent 87%, rgba(255,255,255,.05) 87.5%, rgba(255,255,255,.05)),
+                linear-gradient(150deg, rgba(255,255,255,.05) 12%, transparent 12.5%, transparent 87%, rgba(255,255,255,.05) 87.5%, rgba(255,255,255,.05));
+            background-size: 80px 140px;
+        }
+
+        .hover-lift {
+            transition: transform 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 p-4 md:p-8">
+    <div class="max-w-5xl mx-auto bg-white shadow-2xl rounded-lg overflow-hidden">
+        <!-- En-tête avec dégradé -->
+        <div class="gradient-bg aviation-pattern text-white p-8 md:p-12">
+            <div class="flex flex-col md:flex-row items-center gap-6">
+                <div class="w-32 h-32 print-logo bg-white rounded-full flex items-center justify-center shadow-xl">
+                    <svg class="w-20 h-20 text-indigo-600" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
+                    </svg>
+                </div>
+                <div class="flex-1 text-center md:text-left">
+                    <h1 id="nomPilote" class="text-4xl md:text-5xl print-title font-bold mb-2">Votre Nom</h1>
+                    <h2 id="titrePilote" class="text-xl md:text-2xl print-subtitle font-light mb-2">Pilote Professionnel Multi-Qualifications</h2>
+                    <h3 id="infosPilote" class="text-sm md:text-lg print-info font-light mb-3">36 ans - Français - Permis B</h3>
+                    <div class="flex flex-wrap justify-center md:justify-start gap-4 text-sm print-contacts">
+                        <span class="flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                            </svg>
+                            <span id="emailPilote">votre.email@aviation.fr</span>
+                        </span>
+                        <span class="flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                            </svg>
+                            <span id="telPilote">+33 6 XX XX XX XX</span>
+                        </span>
+                        <span class="flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span id="locPilote">Vourles, France</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistiques de vol -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-8 print-stats bg-gradient-to-r from-indigo-50 to-purple-50">
+            <div class="text-center hover-lift print-stat-card bg-white rounded-lg p-6 shadow-md">
+                <div id="statTotal" class="text-4xl print-stat-number font-bold text-indigo-600 mb-2">2,847</div>
+                <div class="text-gray-600 print-stat-label font-semibold">Heures Totales</div>
+            </div>
+            <div class="text-center hover-lift print-stat-card bg-white rounded-lg p-6 shadow-md">
+                <div id="statHeli" class="text-4xl print-stat-number font-bold text-purple-600 mb-2">1,523</div>
+                <div class="text-gray-600 print-stat-label font-semibold">Heures Hélicoptère</div>
+            </div>
+            <div class="text-center hover-lift print-stat-card bg-white rounded-lg p-6 shadow-md">
+                <div id="statAvion" class="text-4xl print-stat-number font-bold text-blue-600 mb-2">1,324</div>
+                <div class="text-gray-600 print-stat-label font-semibold">Heures Avion</div>
+            </div>
+        </div>
+
+        <!-- Contenu principal -->
+        <div class="p-8 md:p-12 print-content">
+            <!-- Profil -->
+            <section class="mb-10 print-section">
+                <h3 class="text-2xl font-bold text-gray-800 mb-4 border-b-2 border-indigo-600 pb-2">Profil</h3>
+                <p class="text-gray-700 leading-relaxed font-semibold">
+                    Pilote professionnel passionné avec plus de 800 heures de vol cumulées sur hélicoptères et avions. 
+                    Expert dans les opérations de transport de passagers et doté d'une grande capacité d'adaptation.
+                    Reconnu pour ma rigueur, ma maîtrise technique et mon engagement dans le respect des
+                    procédures grâce à ma qualification IFR et de la sécurité aérienne.
+                </p>
+            </section>
+
+            <!-- Licences et Qualifications -->
+            <section class="mb-10 print-section">
+                <h3 class="text-2xl font-bold text-gray-800 mb-4 border-b-2 border-indigo-600 pb-2">Licences & Qualifications</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-gradient-to-br from-indigo-50 to-white p-4 rounded-lg border border-indigo-100">
+                        <h4 class="font-bold text-indigo-700 mb-2 flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 512 512">
+                                <path d="M495.295,372.934c-9.222,0-16.705,7.477-16.705,16.705c0,9.211-7.494,16.705-16.705,16.705h-27.559v-34.067 c16.713-2.157,32.179-9.729,44.307-21.893c14.573-14.606,22.567-33.997,22.513-54.595c-0.003-1.409,0.318-6.965-0.556-10.442 c-5.62-81.545-73.672-146.28-156.575-146.28h-9.918v-33.41h150.344c9.222,0,16.705-7.477,16.705-16.705 c0-9.228-7.483-16.705-16.705-16.705H150.344c-9.222,0-16.705,7.477-16.705,16.705c0,9.228,7.483,16.705,16.705,16.705h150.344 v33.41H33.41v-16.705c0-9.228-7.483-16.705-16.705-16.705C7.483,105.657,0,113.134,0,122.362c0,10.98,0,90.193,0,100.229 c0,9.227,7.483,16.704,16.705,16.704c9.222,0,16.705-7.477,16.705-16.705v-12.014l154.39,38.599c0.011,0,0.011,0,0.011,0.006 c7.449,1.854,12.648,8.521,12.648,16.199c0,44.896,27.653,83.45,66.82,99.537v41.427h-50.115c-9.222,0-16.705,7.477-16.705,16.705 s7.483,16.705,16.705,16.705h244.722c27.634,0,50.115-22.48,50.115-50.115C512,380.411,504.517,372.934,495.295,372.934z M334.098,172.475h9.918c60.122,0,110.377,43.236,121.405,100.229H350.802c-9.211,0-16.705-7.494-16.705-16.705V172.475z M400.917,406.343H300.688V372.68c2.42,0.164,4.859,0.254,7.319,0.254h92.91V406.343z"/>
+                            </svg>
+                            CPL(H) - Commercial Pilot License
+                        </h4>
+                        <p class="text-sm text-gray-600">Pas de qualification en cours de validité</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-purple-50 to-white p-4 rounded-lg border border-purple-100">
+                        <h4 class="font-bold text-purple-700 mb-2 flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
+                            </svg>
+                            CPL(A) - Commercial Pilot License
+                        </h4>
+                        <p class="text-sm text-gray-600">Qualifications SEP, MEP, IR, MCC, UPRT Advanced</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-blue-50 to-white p-4 rounded-lg border border-blue-100">
+                        <h4 class="font-bold text-blue-700 mb-2">Certificat Médical Classe 1</h4>
+                        <p class="text-sm text-gray-600">Valide jusqu'au 31 Octobre 2026</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-green-50 to-white p-4 rounded-lg border border-green-100">
+                        <h4 class="font-bold text-green-700 mb-2">ATPL Théorique</h4>
+                        <p class="text-sm text-gray-600">ATPL(H) 2013 / ATPL(A) 2019</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Expériences Professionnelles -->
+            <section class="mb-10 print-section">
+                <h3 class="text-2xl font-bold text-gray-800 mb-4 border-b-2 border-indigo-600 pb-2">Expériences Professionnelles</h3>
+                <div class="space-y-4 print-experience">
+                    <div class="flex gap-4">
+                        <div class="w-24 flex-shrink-0 text-indigo-600 font-bold">2023-2024</div>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-gray-800">Conseiller formation et commercial - L'Escadrille Flight Academy - Valence, France</h4>
+                            <p class="text-gray-600">Suivi des élèves, tenue du portefeuille client, commercial.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-24 flex-shrink-0 text-indigo-600 font-bold">2013-2018</div>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-gray-800">Pilote d'hélicoptères - Jet Systems Hélicoptères Services - Valence, France</h4>
+                            <p class="text-gray-600">Surveillance de réseaux, transport de passagers, vols panoramiques, prises de vues.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-24 flex-shrink-0 text-indigo-600 font-bold">2011</div>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-gray-800">Pilote d'hélicoptères - Québec Hélicoptères - Montréal, Canada</h4>
+                            <p class="text-gray-600">Transport de passagers, vols panoramiques, prises de vues.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Formation -->
+            <section class="mb-10 print-section">
+                <h3 class="text-2xl font-bold text-gray-800 mb-4 border-b-2 border-indigo-600 pb-2">Formation</h3>
+                <div class="space-y-4 print-formation">
+                    <div class="flex gap-4">
+                        <div class="w-24 flex-shrink-0 text-indigo-600 font-bold">2019-2020</div>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-gray-800">Formation CPL(A) Modulaire (IR/ME, UPRT Advanced)</h4>
+                            <p class="text-gray-600">Aéropyrénées, Toussus-le-Noble, France</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-24 flex-shrink-0 text-indigo-600 font-bold">2013</div>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-gray-800">Formation CPL(H) EASA</h4>
+                            <p class="text-gray-600">Azur Hélicoptères, Cannes-Mandelieu, France</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-24 flex-shrink-0 text-indigo-600 font-bold">2010-2011</div>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-gray-800">Formation CPL(H) Intégrée - Transports Canada</h4>
+                            <p class="text-gray-600">Passport Hélico - Montréal, Québec, Canada</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Graphiques heures de vol -->
+            <section class="mb-10 print-section print-chart-container page-break-before">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6 border-b-2 border-indigo-600 pb-2">Répartition des Heures de Vol</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Graphique Hélicoptère -->
+                    <div class="text-center print-chart">
+                        <h4 class="font-bold text-purple-700 mb-4 text-lg print-chart-title">Hélicoptère</h4>
+                        <div class="relative inline-block">
+                            <svg width="200" height="200" viewBox="0 0 200 200" class="transform -rotate-90">
+                                <circle cx="100" cy="100" r="80" fill="none" stroke="#e5e7eb" stroke-width="20"/>
+                                <circle id="heliCircle" cx="100" cy="100" r="80" fill="none" stroke="#9333ea" stroke-width="20" 
+                                        stroke-dasharray="502.4" stroke-dashoffset="251.2" stroke-linecap="round"/>
+                            </svg>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div>
+                                    <div id="pctHeli" class="text-3xl font-bold text-purple-700">53%</div>
+                                    <div class="text-sm text-gray-600">du total</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="heuresHeli" class="mt-4 text-2xl font-bold text-purple-700">1,523 h</div>
+                    </div>
+                    
+                    <!-- Graphique Avion -->
+                    <div class="text-center print-chart">
+                        <h4 class="font-bold text-blue-700 mb-4 text-lg print-chart-title">Avion</h4>
+                        <div class="relative inline-block">
+                            <svg width="200" height="200" viewBox="0 0 200 200" class="transform -rotate-90">
+                                <circle cx="100" cy="100" r="80" fill="none" stroke="#e5e7eb" stroke-width="20"/>
+                                <circle id="avionCircle" cx="100" cy="100" r="80" fill="none" stroke="#2563eb" stroke-width="20" 
+                                        stroke-dasharray="502.4" stroke-dashoffset="266.3" stroke-linecap="round"/>
+                            </svg>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div>
+                                    <div id="pctAvion" class="text-3xl font-bold text-blue-700">47%</div>
+                                    <div class="text-sm text-gray-600">du total</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="heuresAvion" class="mt-4 text-2xl font-bold text-blue-700">1,324 h</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tableaux heures de vol -->
+            <section class="mb-10 print-section">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6 border-b-2 border-indigo-600 pb-2">Détail des Heures de Vol</h3>
+                
+                <!-- Tableau Hélicoptères -->
+                <div class="mb-8">
+                    <h4 class="text-xl font-bold text-purple-700 mb-4 flex items-center gap-2">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 512 512">
+                            <path d="M495.295,372.934c-9.222,0-16.705,7.477-16.705,16.705c0,9.211-7.494,16.705-16.705,16.705h-27.559v-34.067 c16.713-2.157,32.179-9.729,44.307-21.893c14.573-14.606,22.567-33.997,22.513-54.595c-0.003-1.409,0.318-6.965-0.556-10.442 c-5.62-81.545-73.672-146.28-156.575-146.28h-9.918v-33.41h150.344c9.222,0,16.705-7.477,16.705-16.705 c0-9.228-7.483-16.705-16.705-16.705H150.344c-9.222,0-16.705,7.477-16.705,16.705c0,9.228,7.483,16.705,16.705,16.705h150.344 v33.41H33.41v-16.705c0-9.228-7.483-16.705-16.705-16.705C7.483,105.657,0,113.134,0,122.362c0,10.98,0,90.193,0,100.229 c0,9.227,7.483,16.704,16.705,16.704c9.222,0,16.705-7.477,16.705-16.705v-12.014l154.39,38.599c0.011,0,0.011,0,0.011,0.006 c7.449,1.854,12.648,8.521,12.648,16.199c0,44.896,27.653,83.45,66.82,99.537v41.427h-50.115c-9.222,0-16.705,7.477-16.705,16.705 s7.483,16.705,16.705,16.705h244.722c27.634,0,50.115-22.48,50.115-50.115C512,380.411,504.517,372.934,495.295,372.934z M334.098,172.475h9.918c60.122,0,110.377,43.236,121.405,100.229H350.802c-9.211,0-16.705-7.494-16.705-16.705V172.475z M400.917,406.343H300.688V372.68c2.42,0.164,4.859,0.254,7.319,0.254h92.91V406.343z"/>
+                        </svg>
+                        Hélicoptères
+                    </h4>
+                    <div class="overflow-x-auto shadow-lg rounded-lg">
+                        <table class="min-w-full bg-white border border-gray-200">
+                            <thead class="bg-gradient-to-r from-purple-600 to-purple-700 text-white">
+                                <tr>
+                                    <th class="py-3 px-4 text-left font-semibold w-1/4">Type</th>
+                                    <th class="py-3 px-4 text-center font-semibold w-1/5">Heures Totales</th>
+                                    <th class="py-3 px-4 text-center font-semibold w-1/6">PIC</th>
+                                    <th class="py-3 px-4 text-center font-semibold w-1/6">Nuit</th>
+                                    <th class="py-3 px-4 text-center font-semibold w-1/6">IFR</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200" id="tableauHeli">
+                                <tr class="hover:bg-purple-50 transition-colors">
+                                    <td class="py-3 px-4 font-semibold text-gray-800">EC135</td>
+                                    <td class="py-3 px-4 text-center">847</td>
+                                    <td class="py-3 px-4 text-center">692</td>
+                                    <td class="py-3 px-4 text-center">155</td>
+                                    <td class="py-3 px-4 text-center">234</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Tableau Avions -->
+                <div>
+                    <h4 class="text-xl font-bold text-blue-700 mb-4 flex items-center gap-2">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
+                        </svg>
+                        Avions
+                    </h4>
+                    <div class="overflow-x-auto shadow-lg rounded-lg">
+                        <table class="min-w-full bg-white border border-gray-200">
+                            <thead class="bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+                                <tr>
+                                    <th class="py-3 px-4 text-left font-semibold w-1/4">Type</th>
+                                    <th class="py-3 px-4 text-center font-semibold w-1/5">Heures Totales</th>
+                                    <th class="py-3 px-4 text-center font-semibold w-1/6">PIC</th>
+                                    <th class="py-3 px-4 text-center font-semibold w-1/6">Nuit</th>
+                                    <th class="py-3 px-4 text-center font-semibold w-1/6">IFR</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200" id="tableauAvion">
+                                <tr class="hover:bg-blue-50 transition-colors">
+                                    <td class="py-3 px-4 font-semibold text-gray-800">DA42 (ME)</td>
+                                    <td class="py-3 px-4 text-center">612</td>
+                                    <td class="py-3 px-4 text-center">487</td>
+                                    <td class="py-3 px-4 text-center">612</td>
+                                    <td class="py-3 px-4 text-center">389</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Compétences -->
+            <section class="mb-10 print-section">
+                <h3 class="text-2xl font-bold text-gray-800 mb-4 border-b-2 border-indigo-600 pb-2">Compétences Clés</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="flex items-start gap-3">
+                        <svg class="w-6 h-6 text-indigo-600 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                        <div>
+                            <h5 class="font-semibold text-gray-800">Navigation & Planification</h5>
+                            <p class="text-sm text-gray-600">Maîtrise avancée des procédures IFR, planification de vols complexes</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <svg class="w-6 h-6 text-indigo-600 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                        <div>
+                            <h5 class="font-semibold text-gray-800">Gestion des Risques</h5>
+                            <p class="text-sm text-gray-600">CRM, TEM, analyse météo</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <svg class="w-6 h-6 text-indigo-600 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                        <div>
+                            <h5 class="font-semibold text-gray-800">Opérations Spécialisées</h5>
+                            <p class="text-sm text-gray-600">Vol montagne (hélicoptère), vols techniques, expérience en surveillance de réseaux (navigateur)</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <svg class="w-6 h-6 text-indigo-600 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                        <div>
+                            <h5 class="font-semibold text-gray-800">Langues</h5>
+                            <p class="text-sm text-gray-600">Français (natif), Anglais OACI niveau 5 (jusqu'en 2028)</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer -->
+        <div class="gradient-bg text-white text-center p-6 text-sm print-footer">
+            <p>Disponible immédiatement • Mobilité nationale et internationale (Europe)</p>
+        </div>
+    </div>
+
+    <script>
+        // ===== DONNÉES À MODIFIER =====
+        const donneesPilote = {
+            nom: "Wilfried METAIS",
+            titre: "Pilote Professionnel d'Hélicoptères et d'Avions",
+            infos: "36 ans - Français - Permis B",
+            email: "metais.wilfried@hotmail.com",
+            telephone: "+33 6 ** ** ** **",
+            localisation: "Valence, France",
+            
+            helicopteres: [
+                { type: "R22/R44", totales: 200, pic: 109, nuit: 10, ifr: 0 },
+                { type: "H500", totales: 34, pic: 21, nuit: 2, ifr: 0 },
+                { type: "Bell 206", totales: 265, pic: 254, nuit: 0, ifr: 0 },
+                { type: "AS350", totales: 140, pic: 111, nuit: 0, ifr: 0 },
+            ],
+            
+            avions: [
+                { type: "SEP", totales: 140, pic: 76, nuit: 0, ifr: 0 },
+                { type: "MEP", totales: 31, pic: 3, nuit: 0, ifr: 24 },
+                { type: "Simulateur", totales: 65, pic: 65, nuit: 0, ifr: 65 }
+            ]
+        };
+        
+        // ===== CALCULS AUTOMATIQUES =====
+        function calculerTotaux() {
+            // Totaux hélicoptères
+            const totalHeli = donneesPilote.helicopteres.reduce((acc, h) => ({
+                totales: acc.totales + h.totales,
+                pic: acc.pic + h.pic,
+                nuit: acc.nuit + h.nuit,
+                ifr: acc.ifr + h.ifr
+            }), { totales: 0, pic: 0, nuit: 0, ifr: 0 });
+            
+            // Totaux avions (en excluant le simulateur)
+            const totalAvion = donneesPilote.avions
+                .filter(a => a.type !== "Simulateur")
+                .reduce((acc, a) => ({
+                    totales: acc.totales + a.totales,
+                    pic: acc.pic + a.pic,
+                    nuit: acc.nuit + a.nuit,
+                    ifr: acc.ifr + a.ifr
+                }), { totales: 0, pic: 0, nuit: 0, ifr: 0 });
+            
+            const totalGeneral = totalHeli.totales + totalAvion.totales;
+            
+            return { totalHeli, totalAvion, totalGeneral };
+        }
+        
+        function afficherDonnees() {
+            const { totalHeli, totalAvion, totalGeneral } = calculerTotaux();
+            
+            // Mise à jour des informations personnelles
+            document.getElementById('nomPilote').textContent = donneesPilote.nom;
+            document.getElementById('titrePilote').textContent = donneesPilote.titre;
+            document.getElementById('infosPilote').textContent = donneesPilote.infos;
+            document.getElementById('emailPilote').textContent = donneesPilote.email;
+            document.getElementById('telPilote').textContent = donneesPilote.telephone;
+            document.getElementById('locPilote').textContent = donneesPilote.localisation;
+            
+            // Mise à jour des statistiques
+            document.getElementById('statTotal').textContent = totalGeneral.toLocaleString();
+            document.getElementById('statHeli').textContent = totalHeli.totales.toLocaleString();
+            document.getElementById('statAvion').textContent = totalAvion.totales.toLocaleString();
+            
+            // Calcul des pourcentages
+            const pctHeli = Math.round((totalHeli.totales / totalGeneral) * 100);
+            const pctAvion = Math.round((totalAvion.totales / totalGeneral) * 100);
+            
+            document.getElementById('pctHeli').textContent = pctHeli + '%';
+            document.getElementById('pctAvion').textContent = pctAvion + '%';
+            document.getElementById('heuresHeli').textContent = totalHeli.totales.toLocaleString() + ' h';
+            document.getElementById('heuresAvion').textContent = totalAvion.totales.toLocaleString() + ' h';
+            
+            // Remplir tableau hélicoptères
+            const tbodyHeli = document.getElementById('tableauHeli');
+            tbodyHeli.innerHTML = donneesPilote.helicopteres.map(h => `
+                <tr class="hover:bg-purple-50 transition-colors">
+                    <td class="py-3 px-4 font-semibold text-gray-800">${h.type}</td>
+                    <td class="py-3 px-4 text-center">${h.totales}</td>
+                    <td class="py-3 px-4 text-center">${h.pic}</td>
+                    <td class="py-3 px-4 text-center">${h.nuit}</td>
+                    <td class="py-3 px-4 text-center">${h.ifr}</td>
+                </tr>
+            `).join('') + `
+                <tr class="bg-purple-100 font-bold">
+                    <td class="py-3 px-4 text-purple-800">TOTAL</td>
+                    <td class="py-3 px-4 text-center text-purple-800">${totalHeli.totales.toLocaleString()}</td>
+                    <td class="py-3 px-4 text-center text-purple-800">${totalHeli.pic.toLocaleString()}</td>
+                    <td class="py-3 px-4 text-center text-purple-800">${totalHeli.nuit.toLocaleString()}</td>
+                    <td class="py-3 px-4 text-center text-purple-800">${totalHeli.ifr.toLocaleString()}</td>
+                </tr>
+            `;
+            
+            // Remplir tableau avions
+            const tbodyAvion = document.getElementById('tableauAvion');
+            tbodyAvion.innerHTML = donneesPilote.avions.map(a => `
+                <tr class="hover:bg-blue-50 transition-colors">
+                    <td class="py-3 px-4 font-semibold text-gray-800">${a.type}</td>
+                    <td class="py-3 px-4 text-center">${a.totales}</td>
+                    <td class="py-3 px-4 text-center">${a.pic}</td>
+                    <td class="py-3 px-4 text-center">${a.nuit}</td>
+                    <td class="py-3 px-4 text-center">${a.ifr}</td>
+                </tr>
+            `).join('') + `
+                <tr class="bg-blue-100 font-bold">
+                    <td class="py-3 px-4 text-blue-800">TOTAL</td>
+                    <td class="py-3 px-4 text-center text-blue-800">${totalAvion.totales.toLocaleString()}</td>
+                    <td class="py-3 px-4 text-center text-blue-800">${totalAvion.pic.toLocaleString()}</td>
+                    <td class="py-3 px-4 text-center text-blue-800">${totalAvion.nuit.toLocaleString()}</td>
+                    <td class="py-3 px-4 text-center text-blue-800">${totalAvion.ifr.toLocaleString()}</td>
+                </tr>
+            `;
+            
+            // Animation des cercles
+            const circumference = 502.4;
+            const offsetHeli = circumference * (1 - (pctHeli / 100));
+            const offsetAvion = circumference * (1 - (pctAvion / 100));
+            
+            setTimeout(() => {
+                const heliCircle = document.getElementById('heliCircle');
+                const avionCircle = document.getElementById('avionCircle');
+                
+                heliCircle.style.transition = 'stroke-dashoffset 2s ease-out';
+                heliCircle.style.strokeDashoffset = offsetHeli;
+                
+                avionCircle.style.transition = 'stroke-dashoffset 2s ease-out';
+                avionCircle.style.strokeDashoffset = offsetAvion;
+            }, 100);
+        }
+        
+        // Charger les données au chargement de la page
+        window.addEventListener('load', afficherDonnees);
+    </script>
+</body>
+</html>
