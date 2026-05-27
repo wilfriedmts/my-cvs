@@ -10,15 +10,75 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         body { font-family: 'Inter', sans-serif; }
         .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+
+        /* =====================================================
+           VALEURS D'IMPRESSION — modifiez uniquement ici
+           ===================================================== */
         @media print {
-            body { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+            :root {
+                --print-header-padding : 14px;   /* padding de l'en-tête coloré   */
+                --print-content-padding: 18px;   /* padding du contenu            */
+                --print-section-gap   : 18px;    /* espace entre les sections     */
+                --print-h1-size       : 28px;    /* taille du nom                 */
+                --print-h2-size       : 20px;    /* taille des titres de sections */
+                --print-body-size     : 16px;    /* taille du texte courant       */
+            }
+        }
+        /* ===================================================== */
+
+        /* Application des variables (écran = valeurs Tailwind, impression = variables ci-dessus) */
+        @media print {
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            html, body { margin: 0; padding: 0 !important; background: white !important; }
+            #print-btn { display: none !important; }
+
+            .cv-wrapper {
+                max-width: 100% !important;
+                margin: 0 !important;
+                box-shadow: none !important;
+                border-radius: 0 !important;
+            }
+            .page-break {
+                page-break-before: always !important;
+                break-before: page !important;
+            }
+
+            /* En-tête */
+            .cv-header { padding: var(--print-header-padding) !important; }
+            .cv-header h1 { font-size: var(--print-h1-size) !important; margin-bottom: 4px !important; }
+            .cv-header p, .cv-header span { font-size: var(--print-body-size) !important; margin-bottom: 4px !important; }
+
+            /* Contenu */
+            .cv-content { padding: var(--print-content-padding) !important; }
+            .cv-content section,
+            .cv-content > div { margin-bottom: var(--print-section-gap) !important; }
+
+            /* Titres de sections */
+            .cv-content h2 { font-size: var(--print-h2-size) !important; margin-bottom: 6px !important; padding-bottom: 4px !important; }
+
+            /* Texte courant */
+            .cv-content p,
+            .cv-content li,
+            .cv-content span,
+            .cv-content h3,
+            .cv-content h4 { font-size: var(--print-body-size) !important; }
         }
     </style>
 </head>
 <body class="bg-gray-50 p-8">
-    <div class="max-w-4xl mx-auto bg-white shadow-2xl rounded-lg overflow-hidden">
-        <!-- En-tête avec gradient -->
-        <div class="gradient-bg text-white p-8">
+
+    <button id="print-btn" onclick="window.print()"
+        style="display:flex;position:fixed;bottom:2rem;right:2rem;z-index:100;"
+        class="items-center gap-2 gradient-bg text-white px-5 py-3 rounded-full shadow-lg font-semibold text-sm hover:opacity-90 transition-opacity cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/>
+        </svg>
+        Imprimer
+    </button>
+
+    <div class="cv-wrapper max-w-4xl mx-auto bg-white shadow-2xl rounded-lg overflow-hidden">
+
+        <div class="gradient-bg cv-header text-white p-8">
             <h1 class="text-4xl font-bold mb-2">Wilfried METAIS</h1>
             <p class="text-xl text-gray-100 mb-4">Développeur Full Stack / Concepteur Développeur d'Applications</p>
             <div class="flex flex-wrap gap-4 text-sm">
@@ -27,14 +87,8 @@
                         <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
                         <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
                     </svg>
-                    metais.wilfried@gmail.com
+                    metais.wilfried@hotmail.com
                 </span>
-                <!-- <span class="flex items-center gap-2">
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
-                    </svg>
-                    +33 6 79 38 15 06
-                </span> -->
                 <span class="flex items-center gap-2">
                     <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
@@ -50,12 +104,13 @@
             </div>
         </div>
 
-        <div class="p-8">
+        <div class="cv-content p-8">
+
             <!-- Profil -->
             <section class="mb-8">
                 <h2 class="text-2xl font-bold text-gray-800 mb-3 border-b-2 border-purple-600 pb-2">Profil</h2>
                 <p class="text-gray-700 leading-relaxed">
-                    Concepeteur et développeur d'applications web et web mobile modernes, accessibles et sécurisées.</br>
+                    Concepteur et développeur d'applications web et web mobile modernes, accessibles et sécurisées.<br>
                     Spécialisé Javascript, j'utilise principalement, Node.js, React et des bases de données relationnelles, 
                     afin de transformer vos idées en solutions élégantes et performantes tout en assurant une veille 
                     technologique constante pour améliorer l'expérience utilisateur.
@@ -117,7 +172,7 @@
                             <h3 class="text-lg font-semibold text-gray-800">Concepteur Développeur d'Applications (Titre Professionnel)</h3>
                             <p class="text-purple-600">O'Clock</p>
                         </div>
-                        <span class="text-gray-600 text-sm font-medium">Mars 2025 - Décembre 2025</span>
+                        <span class="text-gray-600 text-sm font-medium">Mars 2025 - Mars 2026</span>
                     </div>
                 </div>
                 <div class="mb-4">
@@ -149,10 +204,10 @@
                 </div>
             </section>
 
-            <!-- Expériences -->
-            <section class="mb-8">
+            <!-- Expériences — saut de page -->
+            <section class="mb-8 page-break">
                 <h2 class="text-2xl font-bold text-gray-800 mb-3 border-b-2 border-purple-600 pb-2">Expériences Professionnelles</h2>
-                
+
                 <div class="mb-6">
                     <div class="flex justify-between items-start mb-2">
                         <div>
