@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Lettre de Motivation - Wilfried METAIS - Pilote</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+
+        /* =====================================================
+           VALEURS D'IMPRESSION — modifiez uniquement ici
+           ===================================================== */
+        @media print {
+            :root {
+                --print-header-padding : 14px;   /* padding de l'en-tête           */
+                --print-content-padding: 24px;   /* padding du contenu             */
+                --print-body-size      : 11.5px; /* taille du texte courant        */
+                --print-block-gap      : 10px;   /* espace entre les blocs colorés */
+                --print-block-padding  : 10px;   /* padding intérieur blocs colorés*/
+            }
+        }
+        /* ===================================================== */
+
+        @media print {
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            html, body { margin: 0; padding: 0 !important; background: white !important; }
+            #print-btn { display: none !important; }
+            .lm-wrapper {
+                max-width: 100% !important;
+                margin: 0 !important;
+                box-shadow: none !important;
+                border-radius: 0 !important;
+            }
+            .lm-header { padding: var(--print-header-padding) !important; }
+            .lm-header h1 { font-size: 20px !important; margin-bottom: 2px !important; }
+            .lm-header span { font-size: 10px !important; }
+            .lm-content { padding: var(--print-content-padding) !important; }
+            .lm-content p, .lm-content li, .lm-content span { font-size: var(--print-body-size) !important; }
+            .lm-content .space-y-4 { gap: var(--print-block-gap) !important; }
+            .lm-bloc { padding: var(--print-block-padding) !important; margin-bottom: var(--print-block-gap) !important; }
+            .lm-footer { padding: 8px !important; font-size: 10px !important; }
+            .lm-content .mb-4 { margin-bottom: 6px !important; }
+            .lm-content .mb-6 { margin-bottom: 8px !important; }
+            .lm-content .mb-8 { margin-bottom: 10px !important; }
+            .lm-content .mt-6 { margin-top: 8px !important; }
+            .lm-content .mt-8 { margin-top: 10px !important; }
+            .lm-content .leading-relaxed { line-height: 1.5 !important; }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 p-8">
+
+    <button id="print-btn" onclick="window.print()"
+        style="display:flex;position:fixed;bottom:2rem;right:2rem;z-index:100;"
+        class="items-center gap-2 gradient-bg text-white px-5 py-3 rounded-full shadow-lg font-semibold text-sm hover:opacity-90 transition-opacity cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/>
+        </svg>
+        Imprimer
+    </button>
+
+    <div class="lm-wrapper max-w-3xl mx-auto bg-white shadow-2xl rounded-lg overflow-hidden">
+
+        <!-- En-tête -->
+        <div class="gradient-bg lm-header text-white p-6">
+            <h1 class="text-3xl font-bold mb-1">Wilfried METAIS</h1>
+            <div class="flex flex-wrap gap-4 text-sm">
+                <span>metais.wilfried@hotmail.com</span>
+                <span>+33 6 ** ** ** **</span>
+                <span>Valence, France</span>
+            </div>
+        </div>
+
+        <div class="lm-content p-8">
+
+            <div class="mb-6 text-right text-gray-600 text-sm">
+                Valence, le 26 janvier 2026
+            </div>
+
+            <div class="mb-6">
+                <p class="font-semibold text-gray-800">Objet : Candidature au poste de Pilote d'Hélicoptères</p>
+            </div>
+
+            <p class="mb-6 text-gray-700">Madame, Monsieur,</p>
+
+            <!-- Bloc 1 : Parcours & motivation -->
+            <div class="lm-bloc border-l-4 border-purple-600 pl-4 bg-purple-50 py-3 pr-4 rounded-r mb-4">
+                <p class="font-semibold text-gray-800 mb-2">🚁 Mon parcours de pilote</p>
+                <p class="text-gray-700 leading-relaxed">
+                    Pilote professionnel d'hélicoptères depuis 2011, titulaire d'un <strong>CPL(H)</strong> et d'un <strong>CPL(A)</strong>,
+                    je totalise <strong>639 heures de vol sur hélicoptères</strong> dont <strong>497 heures en tant que commandant de bord</strong>.
+                    Après plusieurs années loin du vol opérationnel, je souhaite aujourd'hui revenir à mon métier d'origine et poursuivre
+                    durablement ma carrière de pilote d'hélicoptères.
+                </p>
+            </div>
+
+            <!-- Bloc 2 : Expériences opérationnelles -->
+            <div class="lm-bloc border-l-4 border-purple-600 pl-4 bg-purple-50 py-3 pr-4 rounded-r mb-4">
+                <p class="font-semibold text-gray-800 mb-2">✈️ Expériences opérationnelles</p>
+                <p class="text-gray-700 leading-relaxed mb-2">
+                    Lors de mes précédentes expériences, j'ai piloté sur <strong>Robinson, Bell 206 et AS350/H125</strong>, dans des missions
+                    de transport de passagers, vols panoramiques et prises de vues. Je possède également une grande expérience en
+                    <strong>visite de réseaux pour le compte d'ERDF</strong>, en tant que navigateur.
+                </p>
+                <p class="text-gray-700 leading-relaxed">
+                    En 2019, j'ai poursuivi et diversifié mon parcours aéronautique en obtenant un <strong>CPL(A)</strong> couplé à une
+                    qualification <strong>IR/ME</strong> et un <strong>UPRT Advanced</strong> en 2020.
+                </p>
+            </div>
+
+            <!-- Bloc 3 : Contexte & projet -->
+            <div class="lm-bloc border-l-4 border-purple-600 pl-4 bg-purple-50 py-3 pr-4 rounded-r mb-6">
+                <p class="font-semibold text-gray-800 mb-2">🎯 Mon projet professionnel</p>
+                <p class="text-gray-700 leading-relaxed mb-2">
+                    La crise sanitaire de 2020 a fortement impacté l'emploi dans le secteur. J'ai fait le choix de privilégier
+                    stabilité professionnelle et vie familiale, en travaillant notamment au sein d'une école de pilotage comme
+                    conseiller formation et commercial, avant d'entreprendre une reconversion dans le développement web.
+                </p>
+                <p class="text-gray-700 leading-relaxed">
+                    Cette reconversion m'a permis d'acquérir de nouvelles compétences en traitement de données et développement
+                    d'outils numériques. Elle ne change toutefois pas mon projet : <strong>revenir au pilotage d'hélicoptères</strong>,
+                    métier que je souhaite exercer pour la suite de ma carrière.
+                </p>
+            </div>
+
+            <!-- Corps de la lettre -->
+            <div class="text-gray-700 leading-relaxed space-y-4 mb-6">
+                <p>
+                    Conscient de la nécessité d'une remise à niveau et du renouvellement des qualifications, mon
+                    <strong>certificat médical de Classe 1 étant toujours valide</strong>, je suis prêt à m'engager concrètement
+                    dans cette démarche afin de retrouver le niveau opérationnel réglementaire correspondant aux exigences de votre entreprise.
+                </p>
+                <p>
+                    Je mesure l'investissement que peut représenter l'accompagnement d'un pilote à la suite d'une longue interruption.
+                    Je suis donc prêt à faire preuve de <strong>souplesse concernant les modalités de mon intégration</strong> et les
+                    conditions de cette période de reprise.
+                </p>
+                <p>
+                    Je recherche avant tout un cockpit et l'opportunité de reprendre durablement le métier pour lequel je me suis formé
+                    et que j'ai toujours souhaité exercer.
+                </p>
+            </div>
+
+            <!-- Conclusion -->
+            <div class="text-gray-700 leading-relaxed mb-8">
+                <p class="mb-4">
+                    Je serai ravi de pouvoir m'entretenir avec vous, quand vous le souhaitez, afin de discuter de mon parcours
+                    et de ce projet professionnel.
+                </p>
+                <p>
+                    Vous remerciant par avance de l'intérêt que vous porterez à ma candidature, je vous prie de bien vouloir agréer
+                    Madame, Monsieur, mes sincères salutations.
+                </p>
+            </div>
+
+            <!-- Signature -->
+            <div class="text-right mb-8">
+                <p class="font-semibold text-gray-800 text-lg">Wilfried METAIS</p>
+            </div>
+
+            <!-- Footer CTA -->
+            <div class="lm-footer gradient-bg text-white p-4 rounded-lg text-center">
+                <p class="font-semibold mb-1">📱 Disponible pour un entretien</p>
+                <p class="text-sm">metais.wilfried@hotmail.com • +33 6 ** ** ** **</p>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
