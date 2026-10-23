@@ -70,7 +70,7 @@
             <h1 class="text-3xl font-bold mb-1">Wilfried METAIS</h1>
             <div class="flex flex-wrap gap-4 text-sm">
                 <span>metais.wilfried@hotmail.com</span>
-                <span>+33 6 79 38 15 06</span>
+                <span class="numero-telephone"></span>
                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
                 </svg>
@@ -144,7 +144,7 @@
             <!-- Footer CTA -->
             <div class="lm-footer gradient-bg text-white mt-8 p-4 rounded-lg text-center">
                 <p class="font-semibold mb-1">Disponible pour un entretien</p>
-                <p class="text-sm">metais.wilfried@hotmail.com • +33 6 79 38 15 06</p>
+                <p class="text-sm">metais.wilfried@hotmail.com • <span class="numero-telephone"></span></p>
             </div>
 
         </div>
@@ -158,6 +158,12 @@
             month: 'long',
             year: 'numeric'
         });
+
+        const numeros = document.getElementsByClassName('numero-telephone');
+        const numero = "+33 6 79 38 15 06";
+        for (let i = 0; i < numeros.length; i++) {
+            numeros[i].textContent = numero;
+        }
     </script>
 </body>
 </html>

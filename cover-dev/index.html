@@ -22,7 +22,7 @@
             <h1 class="text-3xl font-bold mb-1">Wilfried METAIS</h1>
             <div class="flex flex-wrap gap-4 text-sm">
                 <span>metais.wilfried@hotmail.com</span>
-                <span>+33 6 ** ** ** **</span>
+                <span class="numero-telephone"></span>
                 <span>Valence, France</span>
             </div>
         </div>
@@ -37,7 +37,7 @@
             </div> -->
 
             <div class="mb-6 text-right text-gray-600 text-sm">
-                Valence, le 26 janvier 2026
+                Valence, le <span id="date-du-jour"></span>
             </div>
 
             <div class="mb-6">
@@ -78,13 +78,13 @@
                 <div class="border-l-4 border-purple-600 pl-4 bg-purple-50 py-3 pr-4 rounded-r">
                     <p class="font-semibold text-gray-800 mb-2">💼 Ce que mes expériences apportent</p>
                     <p>
-                        Mes précédentes expériences aéronautiques, m'ont formées à une qualité de travail se devant d'être irréprochable, 
+                        Mes précédentes expériences aéronautiques, m'ont formé à une qualité de travail se devant d'être irréprochable, 
                         qui fait aujourd'hui une de mes forces en tant que développeur, mais également :
                     </p>
                     <ul>
                         <li class="pl-4">- Une <strong>rigueur</strong> dans la qualité de mon code, et dans le respect des normes.</li>
                         <li class="pl-4">- Une <strong>capacité d'apprentissage</strong> l'aéronautique étant très demandeuse en connaissances, un apprentissage constant m'a permis de mieux assimiler les notions complexes lors de ma formation au développement.</li>
-                        <li class="pl-4">- Un <strong>esprit d'équipe</strong> étant habitué à travailler en équipage ou la communication est primordiale, mais aussi en autonomie quand cela est nécessaire.</li>
+                        <li class="pl-4">- Un <strong>esprit d'équipe</strong> étant habitué à travailler en équipage où la communication est primordiale, mais aussi en autonomie quand cela est nécessaire.</li>
                     </ul>
                     
                     <!-- <p>
@@ -124,9 +124,26 @@
             <!-- Call-to-action visuel -->
             <div class="mt-8 gradient-bg text-white p-4 rounded-lg text-center">
                 <p class="font-semibold mb-1">📱 Disponible pour un entretien</p>
-                <p class="text-sm">metais.wilfried@hotmail.com • +33 6 ** ** ** **</p>
+                <p class="text-sm">metais.wilfried@hotmail.com • <span class="numero-telephone"></span>
+                </p>
             </div>
         </div>
     </div>
+    <script>
+        const spanDate = document.getElementById('date-du-jour');
+        const aujourdHui = new Date();
+        
+        spanDate.textContent = aujourdHui.toLocaleDateString('fr-FR', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        });
+
+        const numeros = document.getElementsByClassName('numero-telephone');
+        const numero = "+33 6 79 38 15 06";
+        for (let i = 0; i < numeros.length; i++) {
+            numeros[i].textContent = numero;
+        }
+    </script>
 </body>
 </html>
