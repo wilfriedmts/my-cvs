@@ -18,7 +18,7 @@
             :root {
                 --print-header-padding : 14px;   /* padding de l'en-tête           */
                 --print-content-padding: 24px;   /* padding du contenu             */
-                --print-body-size      : 13px; /* taille du texte courant        */
+                --print-body-size      : 15px; /* taille du texte courant        */
                 --print-block-gap      : 10px;   /* espace entre les blocs colorés */
                 --print-block-padding  : 10px;   /* padding intérieur blocs colorés*/
             }
@@ -37,7 +37,7 @@
             }
             .lm-header { padding: var(--print-header-padding) !important; }
             .lm-header h1 { font-size: 20px !important; margin-bottom: 2px !important; }
-            .lm-header span { font-size: 10px !important; }
+            .lm-header span { font-size: 15px !important; }
             .lm-content { padding: var(--print-content-padding) !important; }
             .lm-content p, .lm-content li, .lm-content span { font-size: var(--print-body-size) !important; }
             .lm-content .space-y-4 { gap: var(--print-block-gap) !important; }
@@ -70,9 +70,9 @@
             <h1 class="text-3xl font-bold mb-1">Wilfried METAIS</h1>
             <div class="flex flex-wrap gap-4 text-sm">
                 <span>metais.wilfried@hotmail.com</span>
-                <span>+33 6 ** ** ** **</span>
+                <span>+33 6 79 38 15 06</span>
                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
                 </svg>
                 <span>Valence, France</span>
             </div>
@@ -81,97 +81,83 @@
         <div class="lm-content p-8">
 
             <div class="mb-6 text-right text-gray-600 text-sm">
-                Valence, le 26 janvier 2026
+                Valence, le  <span id="date-du-jour"></span>
             </div>
 
             <div class="mb-6">
-                <p class="font-semibold text-gray-800">Objet : Candidature au poste de Pilote d'Hélicoptères</p>
+                <p class="font-semibold text-gray-800">Objet : Candidature au poste de Pilote</p>
             </div>
 
             <p class="mb-6 text-gray-700">Madame, Monsieur,</p>
 
-            <!-- Bloc 1 : Parcours & motivation -->
-            <div class="lm-bloc border-l-4 border-purple-600 pl-4 bg-purple-50 py-3 pr-4 rounded-r mb-4">
-                <p class="font-semibold text-gray-800 mb-2">🚁 Mon parcours de pilote</p>
-                <p class="text-gray-700 leading-relaxed">
-                    Pilote professionnel d'hélicoptères depuis 2011, titulaire d'un <strong>CPL(H)</strong> et d'un <strong>CPL(A)</strong>,
-                    je totalise <strong>639 heures de vol sur hélicoptères</strong> dont <strong>497 heures en tant que commandant de bord</strong>.
-                    Après plusieurs années loin du vol opérationnel, je souhaite aujourd'hui revenir à mon métier d'origine et poursuivre
-                    durablement ma carrière de pilote d'hélicoptères.
-                </p>
-            </div>
-
-            <!-- Bloc 2 : Expériences opérationnelles -->
-            <div class="lm-bloc border-l-4 border-purple-600 pl-4 bg-purple-50 py-3 pr-4 rounded-r mb-4">
-                <p class="font-semibold text-gray-800 mb-2">✈️ Expériences opérationnelles</p>
-                <p class="text-gray-700 leading-relaxed mb-2">
-                    Lors de mes précédentes expériences, j'ai piloté sur <strong>Robinson, Bell 206 et AS350/H125</strong>, dans des missions
-                    de transport de passagers, vols panoramiques et prises de vues. Je possède également une grande expérience en
-                    <strong>visite de réseaux pour le compte d'ERDF</strong>, en tant que navigateur.
-                </p>
-                <p class="text-gray-700 leading-relaxed">
-                    En 2019, j'ai poursuivi et diversifié mon parcours aéronautique en obtenant un <strong>CPL(A)</strong> couplé à une
-                    qualification <strong>IR/ME</strong> et un <strong>UPRT Advanced</strong> en 2020.
-                </p>
-            </div>
-
-            <!-- Bloc 3 : Contexte & projet -->
-            <div class="lm-bloc border-l-4 border-purple-600 pl-4 bg-purple-50 py-3 pr-4 rounded-r mb-6">
-                <p class="font-semibold text-gray-800 mb-2">🎯 Mon projet professionnel</p>
-                <p class="text-gray-700 leading-relaxed mb-2">
-                    La crise sanitaire de 2020 a fortement impacté l'emploi dans le secteur. J'ai fait le choix de privilégier
-                    stabilité professionnelle et vie familiale, en travaillant notamment au sein d'une école de pilotage comme
-                    conseiller formation et commercial, avant d'entreprendre une reconversion dans le développement web.
-                </p>
-                <p class="text-gray-700 leading-relaxed">
-                    Cette reconversion m'a permis d'acquérir de nouvelles compétences en traitement de données et développement
-                    d'outils numériques. Elle ne change toutefois pas mon projet : <strong>revenir au pilotage d'hélicoptères</strong>,
-                    métier que je souhaite exercer pour la suite de ma carrière.
-                </p>
-            </div>
-
             <!-- Corps de la lettre -->
             <div class="text-gray-700 leading-relaxed space-y-4 mb-6">
                 <p>
-                    Conscient de la nécessité d'une remise à niveau et du renouvellement des qualifications, mon
-                    <strong>certificat médical de Classe 1 étant toujours valide</strong>, je suis prêt à m'engager concrètement
-                    dans cette démarche afin de retrouver le niveau opérationnel réglementaire correspondant aux exigences de votre entreprise.
+                    Pilote professionnel depuis 2011, titulaire d’un CPL(H) et d’un CPL(A), je totalise 818 heures de vol dont 639 heures sur hélicoptères, et 179 heures sur avions. 
+                    Après quelques années loin du vol opérationnel en hélicoptère, tout en ayant conservé une activité aéronautique en avion, je souhaite 
+                    aujourd’hui poursuivre durablement ma carrière de pilote.
                 </p>
                 <p>
-                    Je mesure l'investissement que peut représenter l'accompagnement d'un pilote à la suite d'une longue interruption.
-                    Je suis donc prêt à faire preuve de <strong>souplesse concernant les modalités de mon intégration</strong> et les
-                    conditions de cette période de reprise.
+                    Lors de mes précédentes expériences professionnelles, j’ai été amené à voler principalement sur Robinson, Bell 206 et AS350/H125, dans des missions de 
+                    transport de passagers, de vols panoramiques et de prises de vues. Je possède également une expérience conséquente en tant que navigateur, lors de visites 
+                    de réseaux pour le compte d’Enedis, complétant mon expérience aéronautique opérationnelle.
                 </p>
                 <p>
-                    Je recherche avant tout un cockpit et l'opportunité de reprendre durablement le métier pour lequel je me suis formé
-                    et que j'ai toujours souhaité exercer.
+                    En 2019, j’ai décidé de poursuivre et diversifier mon parcours aéronautique en passant un CPL(A) couplé à une qualification IR/ME et un UPRT Advanced, 
+                    obtenus en 2020.
                 </p>
+                <p>
+                    La crise sanitaire de 2020 a par la suite fortement impacté l’emploi dans le secteur. J’ai fait le choix de privilégier une stabilité professionnelle 
+                    tout en restant dans le milieu aéronautique. J’ai notamment travaillé au sein d’une école de pilotage en tant que conseiller formation et commercial 
+                    avant d’entreprendre l’acquisition de nouvelles compétences professionnelles dans le développement web, qui ne changent toutefois pas 
+                    mon projet pour la suite de ma carrière.
+                </p>
+                <p>     
+                    Conscient de la nécessité d’une remise à niveau et du renouvellement des qualifications nécessaires, je suis prêt à m’engager concrètement dans cette 
+                    démarche à retrouver le niveau opérationnel réglementaire et celui correspondant aux exigences de votre compagnie. Mon certificat médical de Classe 1 
+                    a été maintenu valide depuis 2011.
+                </p>
+                <p>    
+                    Je suis prêt à faire preuve de souplesse concernant les modalités de mon intégration et les conditions de cette période de reprise. 
+                </p>
+                <p>    
+                    Je recherche avant tout un cockpit et l’opportunité de reprendre durablement le métier pour lequel je me suis formé et que j’ai toujours souhaité exercer. 
+                </p>
+
             </div>
 
             <!-- Conclusion -->
             <div class="text-gray-700 leading-relaxed mb-8">
-                <p class="mb-4">
-                    Je serai ravi de pouvoir m'entretenir avec vous, quand vous le souhaitez, afin de discuter de mon parcours
-                    et de ce projet professionnel.
+                <p>
+                    Je serai ravi de pouvoir m’entretenir avec vous, quand vous le souhaitez, afin de discuter de mon parcours et de ce projet professionnel.
                 </p>
                 <p>
-                    Vous remerciant par avance de l'intérêt que vous porterez à ma candidature, je vous prie de bien vouloir agréer
-                    Madame, Monsieur, mes sincères salutations.
+                    Vous remerciant par avance de l’intérêt que vous porterez à ma candidature, je vous prie de bien vouloir agréer Madame, Monsieur, mes sincères salutations.
                 </p>
             </div>
 
             <!-- Signature -->
-            <div class="text-right mb-8">
-                <p class="font-semibold text-gray-800 text-lg">Wilfried METAIS</p>
+            <div class="text-right mb-6">
+                <p class="font-semibold text-gray-800 text-lg mr-10">Wilfried METAIS</p>
             </div>
 
             <!-- Footer CTA -->
-            <div class="lm-footer gradient-bg text-white p-4 rounded-lg text-center">
-                <p class="font-semibold mb-1">📱 Disponible pour un entretien</p>
-                <p class="text-sm">metais.wilfried@hotmail.com • +33 6 ** ** ** **</p>
+            <div class="lm-footer gradient-bg text-white mt-8 p-4 rounded-lg text-center">
+                <p class="font-semibold mb-1">Disponible pour un entretien</p>
+                <p class="text-sm">metais.wilfried@hotmail.com • +33 6 79 38 15 06</p>
             </div>
 
         </div>
     </div>
+    <script>
+        const spanDate = document.getElementById('date-du-jour');
+        const aujourdHui = new Date();
+        
+        spanDate.textContent = aujourdHui.toLocaleDateString('fr-FR', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        });
+    </script>
 </body>
 </html>
