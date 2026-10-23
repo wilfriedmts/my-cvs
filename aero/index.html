@@ -36,7 +36,7 @@
                 max-width: 100% !important;
                 margin: 0 !important;
                 box-shadow: none !important;
-                border-radius: 0 !important;
+                border-radius: 10 !important;
             }
 
             /* Saut de page */
@@ -80,7 +80,7 @@
             table th, table td { padding: 3px 6px !important; }
 
             /* Footer */
-            .cv-footer { padding: 5px !important; font-size: 9px !important; }
+            .cv-footer { padding: 5px !important; font-size: 12px !important; margin-top: auto; }
 
             /* Forcer les grilles en colonnes à l'impression */
             .stats-bar { grid-template-columns: repeat(3, 1fr) !important; }
@@ -102,6 +102,121 @@
 
         .hover-lift { transition: transform 0.3s ease; }
         .hover-lift:hover { transform: translateY(-2px); }
+    
+        /* =========================================================
+        THÈME CANDIDATURE HÉLICOPTÈRE
+        Hélicoptère = bleu vif / Avion = gris acier
+        ========================================================= */
+        :root {
+            --air-blue: #0B3A5B;
+            --air-blue-light: #E8F4F8;
+
+            --heli: #087EA4;
+            --heli-dark: #075A76;
+            --heli-light: #E6F5FA;
+            --heli-border: #A9D9E6;
+
+            --plane: #647887;
+            --plane-dark: #435560;
+            --plane-light: #EEF2F4;
+            --plane-border: #C4CFD5;
+        }
+
+        /* Identité générale */
+        .gradient-bg {
+            background: linear-gradient(135deg, #0B3A5B 0%, #176B87 100%) !important;
+        }
+        .border-indigo-600 {
+            border-color: var(--air-blue) !important;
+        }
+        .text-indigo-600,
+        .text-indigo-700 {
+            color: var(--air-blue) !important;
+        }
+        .border-indigo-100 {
+            border-color: #C6DDE6 !important;
+        }
+
+        /* =========================================================
+        HÉLICOPTÈRE — accent principal
+        CPL(H), heures hélico, expérience hélico, graphique hélico
+        ========================================================= */
+        .text-purple-600,
+        .text-purple-700,
+        .text-purple-800 {
+            color: var(--heli) !important;
+        }
+        .bg-purple-100 {
+            background-color: var(--heli-light) !important;
+        }
+        .border-purple-100 {
+            border-color: var(--heli-border) !important;
+        }
+        .from-purple-50 {
+            --tw-gradient-from: var(--heli-light) !important;
+        }
+        .bg-gradient-to-r.from-purple-600 {
+            background-image: linear-gradient(to right, var(--heli), var(--heli-dark)) !important;
+        }
+        #heliCircle {
+            stroke: var(--heli) !important;
+        }
+
+        /* =========================================================
+        AVION — accent secondaire neutre
+        CPL(A), heures avion, expérience avion, graphique avion
+        ========================================================= */
+        .text-blue-600,
+        .text-blue-700,
+        .text-blue-800 {
+            color: var(--plane) !important;
+        }
+        .bg-blue-100 {
+            background-color: var(--plane-light) !important;
+        }
+        .border-blue-100 {
+            border-color: var(--plane-border) !important;
+        }
+        .from-blue-50 {
+            --tw-gradient-from: var(--plane-light) !important;
+        }
+        .bg-gradient-to-r.from-blue-600 {
+            background-image: linear-gradient(to right, var(--plane), var(--plane-dark)) !important;
+        }
+        #avionCircle {
+            stroke: var(--plane) !important;
+        }
+
+        /* Renforce visuellement les cartes sans modifier leur contenu */
+        /* .cv-content [class*="from-purple-50"] {
+            border-left: 5px solid var(--heli) !important;
+        }
+        .cv-content [class*="from-blue-50"] {
+            border-left: 5px solid var(--plane) !important;
+        } */
+
+        /* Impression : couleurs conservées et distinction renforcée */
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            #heliCircle {
+                stroke: var(--heli) !important;
+            }
+            #avionCircle {
+                stroke: var(--plane) !important;
+            }
+
+            .cv-content [class*="from-purple-50"] {
+                border-left: 5px solid var(--heli) !important;
+            }
+            .cv-content [class*="from-blue-50"] {
+                border-left: 5px solid var(--plane) !important;
+            }
+        }
+
     </style>
 </head>
 <body class="bg-gray-50 p-8">
@@ -118,7 +233,7 @@
     <div class="cv-wrapper max-w-5xl mx-auto bg-white shadow-2xl rounded-lg overflow-hidden">
 
         <!-- En-tête -->
-        <div class="gradient-bg aviation-pattern cv-header text-white p-8 md:p-12">
+        <div class="gradient-bg aviation-pattern cv-header text-white p-8 md:p-8">
             <div class="flex flex-col md:flex-row items-center gap-6">
                 <div class="logo-circle w-32 h-32 bg-white rounded-full flex items-center justify-center shadow-xl flex-shrink-0">
                     <svg class="w-20 h-20 text-indigo-600" fill="currentColor" viewBox="0 0 24 24">
@@ -127,9 +242,9 @@
                 </div>
                 <div class="flex-1 text-center md:text-left">
                     <h1 id="nomPilote" class="text-4xl md:text-5xl font-bold mb-2">Votre Nom</h1>
-                    <h2 id="titrePilote" class="text-xl md:text-2xl font-light mb-2">Pilote Professionnel Multi-Qualifications</h2>
-                    <h3 id="infosPilote" class="text-sm md:text-lg font-light mb-3">36 ans - Français - Permis B</h3>
-                    <div class="flex flex-wrap justify-center md:justify-start gap-4 text-sm">
+                    <h2 id="titrePilote" class="text-xl md:text-2xl font-semibold mb-2">Pilote Professionnel Multi-Qualifications</h2>
+                    <h3 id="infosPilote" class="text-sm md:text-lg font-semibold mb-3">37 ans - Français - Permis B</h3>
+                    <div class="flex flex-wrap justify-center md:justify-start gap-4 ">
                         <span class="flex items-center gap-2">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
@@ -162,11 +277,11 @@
             </div>
             <div class="stat-card text-center hover-lift bg-white rounded-lg p-6 shadow-md">
                 <div id="statHeli" class="stat-number text-4xl font-bold text-purple-600 mb-2">—</div>
-                <div class="stat-label text-gray-600 font-semibold">Heures Hélicoptère</div>
+                <div class="stat-label text-gray-600 font-semibold">Heures Hélicoptères</div>
             </div>
             <div class="stat-card text-center hover-lift bg-white rounded-lg p-6 shadow-md">
                 <div id="statAvion" class="stat-number text-4xl font-bold text-blue-600 mb-2">—</div>
-                <div class="stat-label text-gray-600 font-semibold">Heures Avion</div>
+                <div class="stat-label text-gray-600 font-semibold">Heures Avions</div>
             </div>
         </div>
 
@@ -179,7 +294,7 @@
                 <p class="text-gray-700 leading-relaxed font-semibold">
                     Pilote professionnel passionné totalisant plus de 800 heures de vol sur hélicoptères et avions. 
                     Spécialisé dans les opérations de transport de passagers et doté d'une grande capacité d'adaptation opérationnelle.
-                    Reconnu pour mon engagement dans l'assurance de la sécurité des vols et du respect des procédures.
+                    Reconnu pour mon engagement dans l'assurance de la sécurité des vols et le respect des procédures.
                 </p>
             </section>
 
@@ -187,26 +302,42 @@
             <section class="mb-10">
                 <h3 class="text-2xl font-bold text-gray-800 mb-4 border-b-2 border-indigo-600 pb-2">Licences &amp; Qualifications</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="bg-gradient-to-br from-indigo-50 to-white p-4 rounded-lg border border-indigo-100">
-                        <h4 class="font-bold text-indigo-700 mb-2 flex items-center gap-2">
+                    <div class="bg-gradient-to-br from-purple-50 to-white p-4 rounded-lg border border-purple-100">
+                        <h4 class="font-bold text-purple-700 mb-2 flex items-center gap-2">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 512 512"><path d="M495.295,372.934c-9.222,0-16.705,7.477-16.705,16.705c0,9.211-7.494,16.705-16.705,16.705h-27.559v-34.067 c16.713-2.157,32.179-9.729,44.307-21.893c14.573-14.606,22.567-33.997,22.513-54.595c-0.003-1.409,0.318-6.965-0.556-10.442 c-5.62-81.545-73.672-146.28-156.575-146.28h-9.918v-33.41h150.344c9.222,0,16.705-7.477,16.705-16.705 c0-9.228-7.483-16.705-16.705-16.705H150.344c-9.222,0-16.705,7.477-16.705,16.705c0,9.228,7.483,16.705,16.705,16.705h150.344 v33.41H33.41v-16.705c0-9.228-7.483-16.705-16.705-16.705C7.483,105.657,0,113.134,0,122.362c0,10.98,0,90.193,0,100.229 c0,9.227,7.483,16.704,16.705,16.704c9.222,0,16.705-7.477,16.705-16.705v-12.014l154.39,38.599c0.011,0,0.011,0,0.011,0.006 c7.449,1.854,12.648,8.521,12.648,16.199c0,44.896,27.653,83.45,66.82,99.537v41.427h-50.115c-9.222,0-16.705,7.477-16.705,16.705 s7.483,16.705,16.705,16.705h244.722c27.634,0,50.115-22.48,50.115-50.115C512,380.411,504.517,372.934,495.295,372.934z M334.098,172.475h9.918c60.122,0,110.377,43.236,121.405,100.229H350.802c-9.211,0-16.705-7.494-16.705-16.705V172.475z M400.917,406.343H300.688V372.68c2.42,0.164,4.859,0.254,7.319,0.254h92.91V406.343z"/></svg>
                             CPL(H) - Commercial Pilot License
                         </h4>
                         <p class="text-sm text-gray-600">Pas de qualification en cours de validité</p>
                     </div>
-                    <div class="bg-gradient-to-br from-purple-50 to-white p-4 rounded-lg border border-purple-100">
-                        <h4 class="font-bold text-purple-700 mb-2 flex items-center gap-2">
+                    <div class="bg-gradient-to-br from-blue-50 to-white p-4 rounded-lg border border-blue-100">
+                        <h4 class="font-bold text-blue-700 mb-2 flex items-center gap-2">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
                             CPL(A) - Commercial Pilot License
                         </h4>
-                        <p class="text-sm text-gray-600 ">Qualification SEP, MCC et UPRT Advanced.<br/>MEP et IR expirés depuis décembre 2025.</p>
+                        <p class="text-sm text-gray-600 ">Qualification SEP, MCC-JOC et UPRT Advanced.<br/>MEP et IR expirés depuis décembre 2025.</p>
                     </div>
-                    <div class="bg-gradient-to-br from-blue-50 to-white p-4 rounded-lg border border-blue-100">
-                        <h4 class="font-bold text-blue-700 mb-2">Certificat Médical Classe 1</h4>
-                        <p class="text-sm text-gray-600">Valide jusqu'au 31 Octobre 2027</p>
+                    <div class="bg-gradient-to-br from-indigo-50 to-white p-4 rounded-lg border border-indigo-100">
+                        <h4 class="font-bold text-indigo-700 mb-2 flex items-center gap-2">
+                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 7.8C3 6.12 3 5.28 3.327 4.638A4 4 0 0 1 4.638 3.327C5.28 3 6.12 3 7.8 3h8.4c1.68 0 2.52 0 3.162.327a4 4 0 0 1 1.311 1.311C21 5.28 21 6.12 21 7.8v8.4c0 1.68 0 2.52-.327 3.162a4 4 0 0 1-1.311 1.311C18.72 21 17.88 21 16.2 21H7.8c-1.68 0-2.52 0-3.162-.327a4 4 0 0 1-1.311-1.311C3 18.72 3 17.88 3 16.2V7.8Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M13.833 7.3v2.067c0 .28 0 .42.054.527a.8.8 0 0 0 .219.219c.107.054.247.054.527.054H16.7c.28 0 .42 0 .527.054a.8.8 0 0 1 .219.219c.054.107.054.247.054.527v2.067c0 .28 0 .42-.054.527a.8.8 0 0 1-.219.219c-.107.054-.247.054-.527.054h-2.067c-.28 0-.42 0-.527.054a.8.8 0 0 0-.219.219c-.054.107-.054.247-.054.527V16.7c0 .28 0 .42-.054.527a.8.8 0 0 1-.219.219c-.107.054-.247.054-.527.054h-2.067c-.28 0-.42 0-.527-.054a.8.8 0 0 1-.219-.219c-.054-.107-.054-.247-.054-.527v-2.067c0-.28 0-.42-.054-.527a.8.8 0 0 0-.219-.219c-.107-.054-.247-.054-.527-.054H7.3c-.28 0-.42 0-.527-.054a.8.8 0 0 1-.219-.219c-.054-.107-.054-.247-.054-.527v-2.067c0-.28 0-.42.054-.527a.8.8 0 0 1 .219-.219c.107-.054.247-.054.527-.054h2.067c.28 0 .42 0 .527-.054a.8.8 0 0 0 .219-.219c.054-.107.054-.247.054-.527V7.3c0-.28 0-.42.054-.527a.8.8 0 0 1 .219-.219c.107-.054.247-.054.527-.054h2.067c.28 0 .42 0 .527.054a.8.8 0 0 1 .219.219c.054.107.054.247.054.527Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Certificat Médical Classe 1
+                        </h4>
+                        <p class="text-sm font-semibold text-gray-600">
+                            Valide jusqu'au 31 Octobre 2027
+                        </p>
                     </div>
-                    <div class="bg-gradient-to-br from-green-50 to-white p-4 rounded-lg border border-green-100">
-                        <h4 class="font-bold text-green-700 mb-2">ATPL Théorique</h4>
+                    <div class="bg-gradient-to-br from-green-50 to-white p-4 rounded-lg border border-green-300">
+                        <h4 class="font-bold text-green-700 mb-2 flex items-center gap-2">
+                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7 17.9983C4.82497 17.9862 3.64706 17.8897 2.87868 17.1213C2 16.2426 2 14.8284 2 12L2 8C2 5.17157 2 3.75736 2.87868 2.87868C3.75736 2 5.17157 2 8 2L16 2C18.8284 2 20.2426 2 21.1213 2.87868C22 3.75736 22 5.17157 22 8V12C22 14.8284 22 16.2426 21.1213 17.1213C20.3915 17.8512 19.2921 17.9748 17.3197 17.9957L16.5 17.9983" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M9 6L15 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M7 9.5H17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M10.8905 13.9454C11.5297 13.4007 12.4699 13.4007 13.1092 13.9454C13.3831 14.1789 13.7237 14.32 14.0824 14.3486C14.9197 14.4154 15.5845 15.0802 15.6513 15.9174C15.6799 16.2762 15.821 16.6168 16.0544 16.8907C16.5992 17.53 16.5992 18.4702 16.0544 19.1094C15.821 19.3833 15.6799 19.7239 15.6513 20.0827C15.5845 20.9199 14.9197 21.5847 14.0824 21.6515C13.7237 21.6802 13.3831 21.8212 13.1092 22.0547C12.4699 22.5994 11.5299 22.5994 10.8905 22.0547C10.6165 21.8212 10.276 21.6802 9.91719 21.6515C9.07997 21.5847 8.41515 20.9199 8.34834 20.0827C8.31971 19.7239 8.17863 19.3833 7.94519 19.1094C7.40043 18.4702 7.40043 17.53 7.94519 16.8907C8.17863 16.6168 8.31971 16.2762 8.34834 15.9174C8.41515 15.0802 9.07997 14.4154 9.91719 14.3486C10.276 14.32 10.6165 14.1789 10.8905 13.9454Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M10.5 18.2L11.3571 19L13.5 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            ATPL Théorique</h4>
                         <p class="text-sm text-gray-600">ATPL(H) 2013 / ATPL(A) 2019</p>
                     </div>
                 </div>
@@ -220,14 +351,14 @@
                         <div class="w-24 flex-shrink-0 text-indigo-600 font-bold">2023-2024</div>
                         <div class="flex-1">
                             <h4 class="font-bold text-gray-800">Conseiller formation et commercial - L'Escadrille Flight Academy - Valence, France</h4>
-                            <p class="text-gray-600">Suivi des élèves, tenue du portefeuille client, commercial.</p>
+                            <p class="text-gray-600">Suivi des élèves, tenue du portefeuille client, organisation d'événements.</p>
                         </div>
                     </div>
                     <div class="flex gap-4">
                         <div class="w-24 flex-shrink-0 text-indigo-600 font-bold">2013-2018</div>
                         <div class="flex-1">
                             <h4 class="font-bold text-gray-800">Pilote d'hélicoptères - Jet Systems Hélicoptères Services - Valence, France</h4>
-                            <p class="text-gray-600">Surveillance de réseaux, transport de passagers, vols panoramiques, prises de vues.</p>
+                            <p class="text-gray-600">Surveillance de réseaux Enedis et gaz, transport de passagers, vols panoramiques, prises de vues.</p>
                         </div>
                     </div>
                     <div class="flex gap-4">
@@ -275,7 +406,7 @@
                 <h3 class="text-2xl font-bold text-gray-800 mb-6 border-b-2 border-indigo-600 pb-2">Répartition des Heures de Vol</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div class="text-center">
-                        <h4 class="font-bold text-purple-700 mb-4 text-lg">Hélicoptère</h4>
+                        <h4 class="font-bold text-purple-700 mb-4 text-lg">Hélicoptères</h4>
                         <div class="relative inline-block">
                             <svg width="200" height="200" viewBox="0 0 200 200" class="transform -rotate-90">
                                 <circle cx="100" cy="100" r="80" fill="none" stroke="#e5e7eb" stroke-width="20"/>
@@ -292,7 +423,7 @@
                         <div id="heuresHeli" class="mt-4 text-2xl font-bold text-purple-700">— h</div>
                     </div>
                     <div class="text-center">
-                        <h4 class="font-bold text-blue-700 mb-4 text-lg">Avion</h4>
+                        <h4 class="font-bold text-blue-700 mb-4 text-lg">Avions</h4>
                         <div class="relative inline-block">
                             <svg width="200" height="200" viewBox="0 0 200 200" class="transform -rotate-90">
                                 <circle cx="100" cy="100" r="80" fill="none" stroke="#e5e7eb" stroke-width="20"/>
@@ -386,7 +517,7 @@
                         <svg class="w-6 h-6 text-indigo-600 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
                         <div>
                             <h5 class="font-semibold text-gray-800">Langues</h5>
-                            <p class="text-sm text-gray-600">Français (natif), Anglais OACI niveau 5 (jusqu'en 2028)</p>
+                            <p class="text-sm text-gray-600">Français (natif), Anglais OACI niveau 5 (jusqu'en 2028), TOEIC 920</p>
                         </div>
                     </div>
                 </div>
@@ -404,7 +535,7 @@
         const donneesPilote = {
             nom: "Wilfried METAIS",
             titre: "Pilote Professionnel d'Hélicoptères et d'Avions",
-            infos: "36 ans - Français - Permis B",
+            infos: "37 ans - Français - Permis B",
             email: "metais.wilfried@hotmail.com",
             telephone: "+33 6 79 38 15 06",
             localisation: "Valence, France",
