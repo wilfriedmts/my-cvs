@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Wilfried METAIS - Professional Pilot</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        /* Palette du thème : Hélicoptère = bleu vif / Avion = gris acier.
+           Utilisable partout : text-heli, bg-plane-light, border-air-border, etc. */
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        air:   { DEFAULT: '#0B3A5B', mid: '#176B87',  light: '#E8F4F8', border: '#C6DDE6' },
+                        heli:  { DEFAULT: '#087EA4', dark: '#075A76', light: '#E6F5FA', border: '#A9D9E6' },
+                        plane: { DEFAULT: '#647887', dark: '#435560', light: '#EEF2F4', border: '#C4CFD5' }
+                    }
+                }
+            }
+        };
+    </script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+
+        .gradient-bg { background: linear-gradient(135deg, #0B3A5B 0%, #176B87 100%); }
+
+        .hover-lift { transition: transform 0.3s ease; }
+        .hover-lift:hover { transform: translateY(-2px); }
+
+        /* =====================================================================
+           IMPRESSION : UNE PAGE A4, 100 %
+           ---------------------------------------------------------------------
+           Principe : à l'impression, tout est piloté par les variables ci-dessous.
+           Les classes cv-* du HTML n'ont AUCUN effet à l'écran ; elles servent
+           uniquement de repères à cette feuille. Toutes les règles sont préfixées
+           par #cv, donc plus fortes que les classes Tailwind (pas de !important).
+
+           Si ça déborde sur 2 pages : baissez --print-text d'un demi-pixel
+           et/ou --print-gap-section. S'il reste de la place : augmentez-les.
+           ===================================================================== */
+        @page { size: A4 portrait; margin: 6mm; }
+
+        @media print {
+            :root {
+                /* Typographie : 4 tailles seulement */
+                --print-text:        12px;   /* tout le texte courant               */
+                --print-section:     16px;   /* titres de sections                  */
+                --print-name:        27px;   /* nom dans l'en-tête                  */
+                --print-stat:        19px;   /* chiffres du bandeau de stats        */
+                --print-lh:          1.3;    /* interligne unique                   */
+
+                /* Espacements : une seule échelle, utilisée partout */
+                --print-pad-x:       14px;   /* marge gauche/droite (en-tête, stats, contenu, pied) */
+                --print-gap-section: 14px;   /* entre deux sections d'une colonne   */
+                --print-gap-entry:    7px;   /* entre deux entrées / cartes / compétences */
+                --print-gap-col:     11px;   /* entre les deux colonnes             */
+
+                /* Arrondis */
+                --print-radius:       8px;   /* arrondi de l'en-tête et du pied de page (8px = rounded-lg) */
+            }
+
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            html, body { margin: 0; padding: 0 !important; background: #fff !important; }
+
+            #cv { max-width: none; margin: 0; border-radius: 0; box-shadow: none; overflow: visible;
+                  display: flex; flex-direction: column; min-height: 99vh; }
+            #cv * { line-height: var(--print-lh); }
+
+            /* ---- Taille de texte unique ---- */
+            #cv p, #cv h4, #cv h5, #cv table, #cv .cv-text, #cv .cv-entry-date,
+            #cv .stat-label, #cv [role="progressbar"], #cv .cv-contacts, #cv .cv-footer {
+                font-size: var(--print-text);
+            }
+
+            /* ---- En-tête ---- */
+            #cv .cv-header { padding: 10px var(--print-pad-x); border-radius: var(--print-radius) var(--print-radius) 0 0; }
+            #cv .cv-header-row { gap: 0; flex-direction: row; align-items: center; }
+            #cv .cv-header-text { flex: 1; text-align: left; }
+            #cv .cv-name  { font-size: var(--print-name); line-height: 1.15; margin: 0 0 2px; }
+            #cv .cv-title { font-size: calc(var(--print-text) + 2px); margin: 0 0 1px; }
+            #cv .cv-infos { font-size: var(--print-text); margin: 0 0 5px; }
+            #cv .cv-contacts { justify-content: flex-start; gap: 3px 16px; }
+            #cv .cv-contacts svg { width: 12px; height: 12px; }
+
+            /* ---- Bandeau de stats ---- */
+            #cv .stats-bar { grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 6px var(--print-pad-x); }
+            #cv .stat-card { padding: 4px 6px; gap: 6px; box-shadow: none; border: 1px solid #C6DDE6; }
+            #cv .stat-number { font-size: var(--print-stat); margin: 0; }
+
+            /* ---- Contenu : deux colonnes ---- */
+            #cv .cv-content {
+                grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+                column-gap: var(--print-gap-col);
+                padding: 8px var(--print-pad-x);
+                margin: 0;
+                flex: 1 1 auto;
+            }
+            #cv .cv-col { display: flex; flex-direction: column; justify-content: space-between; gap: var(--print-gap-section); }
+            #cv .cv-col-main { margin: 0; padding: 8px 0; }
+            #cv .cv-col-side { padding: 8px; border-radius: 6px; justify-content: flex-start; }
+
+            /* ---- Sections ---- */
+            #cv .cv-section { margin: 0; }
+            #cv .cv-section-title {
+                font-size: var(--print-section);
+                margin: 0 0 6px;
+                padding-bottom: 2px;
+                border-bottom-width: 1.5px;
+            }
+
+            /* ---- Expériences et formations ---- */
+            #cv .cv-entries { gap: var(--print-gap-entry); }
+            #cv .cv-entry { gap: 8px; }
+            #cv .cv-entry-date { width: 5.8em; }
+            #cv .cv-entry-title, #cv .cv-entry-text { margin: 0; }
+
+            /* ---- Compétences ---- */
+            #cv .cv-skills { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--print-gap-entry) 12px; }
+            #cv .cv-skill { gap: 6px; }
+            #cv .cv-skill svg { width: 16px; height: 16px; margin-top: 0; }
+
+            /* ---- Cartes (licences) ---- */
+            #cv .cv-card { padding: 6px 8px; margin: 0 0 var(--print-gap-entry); }
+            #cv .cv-card:last-child { margin-bottom: 0; }
+            #cv .cv-card h4 { margin: 0 0 3px; gap: 6px; }
+            #cv .cv-card svg { width: 14px; height: 14px; }
+
+            /* ---- Répartition ---- */
+            #cv .cv-bar { height: 20px; }
+            #cv .cv-legend { margin-top: 6px; column-gap: 8px; }
+
+            /* ---- Tableau ---- */
+            #cv .cv-table-wrap { box-shadow: none; border: 1px solid #D1D5DB; }
+            #cv table th, #cv table td { padding: 3px 8px; }
+            #cv tr.cv-band td { border-top-width: 3px; }
+            #cv tr.cv-sub td { padding-top: 2px; padding-bottom: 2px; }
+            #cv tr.cv-sub td:first-child { padding-left: 18px; }
+
+            /* ---- Pied de page ---- */
+            #cv .cv-footer { padding: 5px var(--print-pad-x); border-radius: 0 0 var(--print-radius) var(--print-radius); }}
+        }
+    </style>
+</head>
+<body class="bg-gray-50 p-8">
+
+    <!-- Icônes SVG réutilisables : <svg><use href="#i-..."/></svg> -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <symbol id="i-heli" viewBox="0 0 512 512">
+            <path d="M495.295,372.934c-9.222,0-16.705,7.477-16.705,16.705c0,9.211-7.494,16.705-16.705,16.705h-27.559v-34.067 c16.713-2.157,32.179-9.729,44.307-21.893c14.573-14.606,22.567-33.997,22.513-54.595c-0.003-1.409,0.318-6.965-0.556-10.442 c-5.62-81.545-73.672-146.28-156.575-146.28h-9.918v-33.41h150.344c9.222,0,16.705-7.477,16.705-16.705 c0-9.228-7.483-16.705-16.705-16.705H150.344c-9.222,0-16.705,7.477-16.705,16.705c0,9.228,7.483,16.705,16.705,16.705h150.344 v33.41H33.41v-16.705c0-9.228-7.483-16.705-16.705-16.705C7.483,105.657,0,113.134,0,122.362c0,10.98,0,90.193,0,100.229 c0,9.227,7.483,16.704,16.705,16.704c9.222,0,16.705-7.477,16.705-16.705v-12.014l154.39,38.599c0.011,0,0.011,0,0.011,0.006 c7.449,1.854,12.648,8.521,12.648,16.199c0,44.896,27.653,83.45,66.82,99.537v41.427h-50.115c-9.222,0-16.705,7.477-16.705,16.705 s7.483,16.705,16.705,16.705h244.722c27.634,0,50.115-22.48,50.115-50.115C512,380.411,504.517,372.934,495.295,372.934z M334.098,172.475h9.918c60.122,0,110.377,43.236,121.405,100.229H350.802c-9.211,0-16.705-7.494-16.705-16.705V172.475z M400.917,406.343H300.688V372.68c2.42,0.164,4.859,0.254,7.319,0.254h92.91V406.343z"/>
+        </symbol>
+        <symbol id="i-plane" viewBox="0 0 24 24">
+            <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
+        </symbol>
+        <symbol id="i-check" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+        </symbol>
+    </svg>
+
+    <!-- Barre d'actions (masquée à l'impression) -->
+    <div class="max-w-5xl mx-auto mb-3 flex justify-end print:hidden">
+        <div class="inline-flex items-center gap-1 bg-white rounded-full shadow-md border border-air-border p-1">
+
+            <!-- Langue -->
+            <a href="index.html" hreflang="fr" lang="fr" title="Version française" aria-label="Version française"
+            class="flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-semibold text-air hover:bg-air-light transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" width="24" height="16" class="block rounded-sm">
+                    <rect width="1" height="2" fill="#002654"/>
+                    <rect x="1" width="1" height="2" fill="#fff"/>
+                    <rect x="2" width="1" height="2" fill="#CE1126"/>
+                </svg>
+                FR
+            </a>
+
+            <span class="w-px h-5 bg-air-border" aria-hidden="true"></span>
+
+            <!-- Impression -->
+            <button onclick="window.print()"
+                    class="flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-semibold text-white gradient-bg hover:opacity-90 transition-opacity cursor-pointer">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/>
+                </svg>
+                Print
+            </button>
+        </div>
+    </div>
+
+    <div id="cv" class="max-w-5xl mx-auto bg-white shadow-2xl rounded-lg overflow-hidden print:overflow-visible print:max-w-full print:mx-0 print:shadow-none">
+
+        <!-- En-tête -->
+        <div class="gradient-bg cv-header text-white px-8 py-4">
+            <div class="cv-header-row flex flex-col md:flex-row items-center gap-6">
+                <div class="w-32 h-32 bg-white rounded-full flex items-center justify-center shadow-xl flex-shrink-0 print:hidden">
+                    <svg class="w-20 h-20 text-air" fill="currentColor"><use href="#i-plane"/></svg>
+                </div>
+                <div class="cv-header-text flex-1 text-center md:text-left">
+                    <h1 id="nomPilote" class="cv-name text-4xl md:text-5xl font-bold mb-1"></h1>
+                    <h2 id="titrePilote" class="cv-title text-xl md:text-2xl font-semibold mb-1"></h2>
+                    <h3 id="infosPilote" class="cv-infos text-sm md:text-lg font-semibold mb-1"></h3>
+                    <div class="cv-contacts flex flex-wrap justify-center md:justify-start gap-4">
+                        <span class="flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                            </svg>
+                            <span id="emailPilote"></span>
+                        </span>
+                        <span class="flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                            </svg>
+                            <span id="telPilote"></span>
+                        </span>
+                        <span class="flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span id="locPilote"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistiques de vol -->
+        <div class="stats-bar grid grid-cols-1 md:grid-cols-3 gap-8 px-8 py-2 bg-gradient-to-r from-air-light to-heli-light">
+            <div class="stat-card flex gap-2 items-center justify-center text-center hover-lift bg-white rounded-lg p-2 shadow-md">
+                <div id="statTotal" class="stat-number text-3xl font-bold text-air mb-1">—</div>
+                <div class="stat-label text-gray-600 font-semibold">Total Hours</div>
+            </div>
+            <div class="stat-card flex gap-2 items-center justify-center text-center hover-lift bg-white rounded-lg p-2 shadow-md">
+                <div id="statHeli" class="stat-number text-3xl font-bold text-heli mb-1">—</div>
+                <div class="stat-label text-gray-600 font-semibold">Helicopter Hours</div>
+            </div>
+            <div class="stat-card flex gap-2 items-center justify-center text-center hover-lift bg-white rounded-lg p-2 shadow-md">
+                <div id="statAvion" class="stat-number text-3xl font-bold text-plane mb-1">—</div>
+                <div class="stat-label text-gray-600 font-semibold">Aeroplane Hours</div>
+            </div>
+        </div>
+
+        <!-- Contenu principal -->
+        <div class="cv-content grid grid-cols-[minmax(0,3fr)_minmax(0,2fr)] gap-2 md:px-8 my-3">
+
+            <!-- Colonne gauche -->
+            <div class="cv-col cv-col-main mt-3">
+                <!-- Profil -->
+                <section class="cv-section mb-6">
+                    <h3 class="cv-section-title text-2xl font-bold text-gray-800 mb-2 border-b-2 border-air pb-1">Profile</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        Professional pilot with over 800 flight hours on helicopters and aeroplanes.
+                        Specialised in passenger transport operations, with a strong ability to adapt to changing operational conditions.
+                        Recognised for my professionalism, strict adherence to procedures and commitment to flight safety.
+                    </p>
+                </section>
+
+                <!-- Expériences Professionnelles -->
+                <section class="cv-section mb-6">
+                    <h3 class="cv-section-title text-2xl font-bold text-gray-800 mb-2 border-b-2 border-air pb-1">Professional Aviation Experience</h3>
+                    <div class="cv-entries flex flex-col gap-4">
+                        <div class="cv-entry flex gap-4">
+                            <div class="cv-entry-date w-24 flex-shrink-0 text-air font-bold">2023-2024</div>
+                            <div class="flex-1 min-w-0">
+                                <h4 class="cv-entry-title font-bold text-gray-800">Training and Sales Advisor - L'Escadrille Flight Academy - Valence, France</h4>
+                                <p class="cv-entry-text text-gray-600">Student follow-up, client portfolio management, event organisation.</p>
+                            </div>
+                        </div>
+                        <div class="cv-entry flex gap-4">
+                            <div class="cv-entry-date w-24 flex-shrink-0 text-air font-bold">2013-2018</div>
+                            <div class="flex-1 min-w-0">
+                                <h4 class="cv-entry-title font-bold text-gray-800">Helicopter Pilot - Jet Systems Hélicoptères Services - Valence, France</h4>
+                                <p class="cv-entry-text text-gray-600">Electricity and gas network surveillance, passenger transport, sightseeing flights, aerial photography and filming.</p>
+                            </div>
+                        </div>
+                        <div class="cv-entry flex gap-4">
+                            <div class="cv-entry-date w-24 flex-shrink-0 text-air font-bold">2011</div>
+                            <div class="flex-1 min-w-0">
+                                <h4 class="cv-entry-title font-bold text-gray-800">Helicopter Pilot - Québec Hélicoptères - Montréal, Québec, Canada</h4>
+                                <p class="cv-entry-text text-gray-600">Passenger transport, sightseeing flights, aerial photography and filming.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Formation -->
+                <section class="cv-section mb-6">
+                    <h3 class="cv-section-title text-2xl font-bold text-gray-800 mb-2 border-b-2 border-air pb-1">Training</h3>
+                    <div class="cv-entries flex flex-col gap-4">
+                        <div class="cv-entry flex gap-4">
+                            <div class="cv-entry-date w-24 flex-shrink-0 text-air font-bold">2025-2026</div>
+                            <div class="flex-1 min-w-0">
+                                <h4 class="cv-entry-title font-bold text-gray-800">Web Application Designer and Developer Course</h4>
+                                <p class="cv-entry-text text-gray-600">O'Clock - Distance learning, France</p>
+                            </div>
+                        </div>
+                        <div class="cv-entry flex gap-4">
+                            <div class="cv-entry-date w-24 flex-shrink-0 text-air font-bold">2020</div>
+                            <div class="flex-1 min-w-0">
+                                <h4 class="cv-entry-title font-bold text-gray-800">MCC-JOC Boeing 737NG Course</h4>
+                                <p class="cv-entry-text text-gray-600">FlexSim, Simaéro - Roissy-en-France, France</p>
+                            </div>
+                        </div>
+                        <div class="cv-entry flex gap-4">
+                            <div class="cv-entry-date w-24 flex-shrink-0 text-air font-bold">2019-2020</div>
+                            <div class="flex-1 min-w-0">
+                                <h4 class="cv-entry-title font-bold text-gray-800">Modular CPL(A) Course (IR/ME, UPRT Advanced)</h4>
+                                <p class="cv-entry-text text-gray-600">Aéropyrénées - Toussus-le-Noble, France</p>
+                            </div>
+                        </div>
+                        <div class="cv-entry flex gap-4">
+                            <div class="cv-entry-date w-24 flex-shrink-0 text-air font-bold">2018-2019</div>
+                            <div class="flex-1 min-w-0">
+                                <h4 class="cv-entry-title font-bold text-gray-800">ATPL(A)/IR Theoretical Knowledge Course - EASA</h4>
+                                <p class="cv-entry-text text-gray-600">Mikuczanis Aéro-Formation - Bron, France</p>
+                            </div>
+                        </div>
+                        <div class="cv-entry flex gap-4">
+                            <div class="cv-entry-date w-24 flex-shrink-0 text-air font-bold">2013</div>
+                            <div class="flex-1 min-w-0">
+                                <h4 class="cv-entry-title font-bold text-gray-800">CPL(H) Course - EASA</h4>
+                                <p class="cv-entry-text text-gray-600">Azur Hélicoptères - Cannes-Mandelieu, France</p>
+                            </div>
+                        </div>
+                        <div class="cv-entry flex gap-4">
+                            <div class="cv-entry-date w-24 flex-shrink-0 text-air font-bold">2012-2013</div>
+                            <div class="flex-1 min-w-0">
+                                <h4 class="cv-entry-title font-bold text-gray-800">ATPL(H)/IR Theoretical Knowledge Course - EASA</h4>
+                                <p class="cv-entry-text text-gray-600">Institut Mermoz - Rungis, France</p>
+                            </div>
+                        </div>
+                        <div class="cv-entry flex gap-4">
+                            <div class="cv-entry-date w-24 flex-shrink-0 text-air font-bold">2010-2011</div>
+                            <div class="flex-1 min-w-0">
+                                <h4 class="cv-entry-title font-bold text-gray-800">Integrated CPL(H) Course - Transport Canada</h4>
+                                <p class="cv-entry-text text-gray-600">Passport Hélico - Montréal, Québec, Canada</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Compétences Clés -->
+                <section class="cv-section mb-6">
+                    <h3 class="cv-section-title text-2xl font-bold text-gray-800 mb-2 border-b-2 border-air pb-1">Key Skills</h3>
+                    <div class="cv-skills grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="cv-skill flex items-start gap-3">
+                            <svg class="w-6 h-6 text-air flex-shrink-0 mt-1" fill="currentColor"><use href="#i-check"/></svg>
+                            <div>
+                                <h5 class="font-semibold text-gray-800">Navigation &amp; Planning</h5>
+                                <p class="text-sm text-gray-600">Advanced knowledge of IFR procedures, Complex flight planning</p>
+                            </div>
+                        </div>
+                        <div class="cv-skill flex items-start gap-3">
+                            <svg class="w-6 h-6 text-air flex-shrink-0 mt-1" fill="currentColor"><use href="#i-check"/></svg>
+                            <div>
+                                <h5 class="font-semibold text-gray-800">Risk Management</h5>
+                                <p class="text-sm text-gray-600">Crew Resource Management, Threat and Error Management, Weather analysis</p>
+                            </div>
+                        </div>
+                        <div class="cv-skill flex items-start gap-3">
+                            <svg class="w-6 h-6 text-air flex-shrink-0 mt-1" fill="currentColor"><use href="#i-check"/></svg>
+                            <div>
+                                <h5 class="font-semibold text-gray-800">Specialised Operations</h5>
+                                <p class="text-sm text-gray-600">Mountain flying (helicopter), Maintenance check flights, Electricity and gas network surveillance</p>
+                            </div>
+                        </div>
+                        <div class="cv-skill flex items-start gap-3">
+                            <svg class="w-6 h-6 text-air flex-shrink-0 mt-1" fill="currentColor"><use href="#i-check"/></svg>
+                            <div>
+                                <h5 class="font-semibold text-gray-800">Languages</h5>
+                                <p class="text-sm text-gray-600">French (mother tongue)</p>
+                                <p class="text-sm text-gray-600">ICAO English Level 5 (until 2028), TOEIC 920</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Colonne droite -->
+            <div class="cv-col cv-col-side bg-gray-100 p-3 rounded-lg">
+
+                <!-- Licences et Qualifications -->
+                <section class="cv-section mb-6">
+                    <h3 class="cv-section-title text-2xl font-bold text-gray-800 mb-2 border-b-2 border-air pb-1">Licences &amp; Qualifications</h3>
+                    <div>
+                        <div class="cv-card bg-gradient-to-br from-heli-light to-white p-4 rounded-lg border border-heli-border mb-2 print:border-l-[5px] print:border-l-heli font-semibold">
+                            <h4 class="font-bold text-heli mb-2 flex items-center gap-2">
+                                <svg class="w-5 h-5" fill="currentColor"><use href="#i-heli"/></svg>
+                                CPL(H)
+                            </h4>
+                            <p class="text-sm text-gray-600">No current ratings</p>
+                        </div>
+                        <div class="cv-card bg-gradient-to-br from-plane-light to-white p-4 rounded-lg border border-plane-border mb-2 print:border-l-[5px] print:border-l-plane font-semibold">
+                            <h4 class="font-bold text-plane mb-2 flex items-center gap-2">
+                                <svg class="w-5 h-5" fill="currentColor"><use href="#i-plane"/></svg>
+                                CPL(A)
+                            </h4>
+                            <p class="text-sm text-gray-600">SEP rating</p>
+                            <p class="text-sm text-gray-600">MCC-JOC and UPRT Advanced</p>
+                            <p class="text-sm text-gray-600">MEP and IR ratings expired in December 2025</p>
+                        </div>
+                        <div class="cv-card bg-gradient-to-br from-air-light to-white p-4 rounded-lg border border-air-border mb-2">
+                            <h4 class="font-bold text-air mb-2 flex items-center gap-2">
+                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3 7.8C3 6.12 3 5.28 3.327 4.638A4 4 0 0 1 4.638 3.327C5.28 3 6.12 3 7.8 3h8.4c1.68 0 2.52 0 3.162.327a4 4 0 0 1 1.311 1.311C21 5.28 21 6.12 21 7.8v8.4c0 1.68 0 2.52-.327 3.162a4 4 0 0 1-1.311 1.311C18.72 21 17.88 21 16.2 21H7.8c-1.68 0-2.52 0-3.162-.327a4 4 0 0 1-1.311-1.311C3 18.72 3 17.88 3 16.2V7.8Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M13.833 7.3v2.067c0 .28 0 .42.054.527a.8.8 0 0 0 .219.219c.107.054.247.054.527.054H16.7c.28 0 .42 0 .527.054a.8.8 0 0 1 .219.219c.054.107.054.247.054.527v2.067c0 .28 0 .42-.054.527a.8.8 0 0 1-.219.219c-.107.054-.247.054-.527.054h-2.067c-.28 0-.42 0-.527.054a.8.8 0 0 0-.219.219c-.054.107-.054.247-.054.527V16.7c0 .28 0 .42-.054.527a.8.8 0 0 1-.219.219c-.107.054-.247.054-.527.054h-2.067c-.28 0-.42 0-.527-.054a.8.8 0 0 1-.219-.219c-.054-.107-.054-.247-.054-.527v-2.067c0-.28 0-.42-.054-.527a.8.8 0 0 0-.219-.219c-.107-.054-.247-.054-.527-.054H7.3c-.28 0-.42 0-.527-.054a.8.8 0 0 1-.219-.219c-.054-.107-.054-.247-.054-.527v-2.067c0-.28 0-.42.054-.527a.8.8 0 0 1 .219-.219c.107-.054.247-.054.527-.054h2.067c.28 0 .42 0 .527-.054a.8.8 0 0 0 .219-.219c.054-.107.054-.247.054-.527V7.3c0-.28 0-.42.054-.527a.8.8 0 0 1 .219-.219c.107-.054.247-.054.527-.054h2.067c.28 0 .42 0 .527.054a.8.8 0 0 1 .219.219c.054.107.054.247.054.527Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Class 1 Medical Certificate
+                            </h4>
+                            <p class="text-sm font-semibold text-gray-600">Valid until 31 October 2027</p>
+                        </div>
+                        <div class="cv-card bg-gradient-to-br from-green-50 to-white p-4 rounded-lg border border-green-300 mb-2 font-semibold">
+                            <h4 class="font-bold text-green-700 mb-2 flex items-center gap-2">
+                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7 17.9983C4.82497 17.9862 3.64706 17.8897 2.87868 17.1213C2 16.2426 2 14.8284 2 12L2 8C2 5.17157 2 3.75736 2.87868 2.87868C3.75736 2 5.17157 2 8 2L16 2C18.8284 2 20.2426 2 21.1213 2.87868C22 3.75736 22 5.17157 22 8V12C22 14.8284 22 16.2426 21.1213 17.1213C20.3915 17.8512 19.2921 17.9748 17.3197 17.9957L16.5 17.9983" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M9 6L15 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    <path d="M7 9.5H17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    <path d="M10.8905 13.9454C11.5297 13.4007 12.4699 13.4007 13.1092 13.9454C13.3831 14.1789 13.7237 14.32 14.0824 14.3486C14.9197 14.4154 15.5845 15.0802 15.6513 15.9174C15.6799 16.2762 15.821 16.6168 16.0544 16.8907C16.5992 17.53 16.5992 18.4702 16.0544 19.1094C15.821 19.3833 15.6799 19.7239 15.6513 20.0827C15.5845 20.9199 14.9197 21.5847 14.0824 21.6515C13.7237 21.6802 13.3831 21.8212 13.1092 22.0547C12.4699 22.5994 11.5299 22.5994 10.8905 22.0547C10.6165 21.8212 10.276 21.6802 9.91719 21.6515C9.07997 21.5847 8.41515 20.9199 8.34834 20.0827C8.31971 19.7239 8.17863 19.3833 7.94519 19.1094C7.40043 18.4702 7.40043 17.53 7.94519 16.8907C8.17863 16.6168 8.31971 16.2762 8.34834 15.9174C8.41515 15.0802 9.07997 14.4154 9.91719 14.3486C10.276 14.32 10.6165 14.1789 10.8905 13.9454Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M10.5 18.2L11.3571 19L13.5 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                ATPL Theoretical Knowledge
+                            </h4>
+                            <p class="text-sm text-gray-600">ATPL(H)/IR - 2013</p>
+                            <p class="text-sm text-gray-600">ATPL(A)/IR - 2019</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Répartition des Heures de Vol -->
+                <section class="cv-section mb-6">
+                    <h3 class="cv-section-title text-2xl font-bold text-gray-800 mb-2 border-b-2 border-air pb-1">Flight Hours Distribution</h3>
+
+                    <div class="w-full">
+                        <!-- Barre 100 % : les largeurs sont calculées en JS -->
+                        <div class="cv-bar flex w-full h-7 overflow-hidden rounded-full bg-gray-200">
+                            <div id="barHeli" class="h-full bg-heli flex items-center justify-center font-bold text-white whitespace-nowrap transition-all duration-1000" style="width: 0%"
+                                 role="progressbar" aria-label="Helicopters" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+                            <div id="barAvion" class="h-full bg-plane border-l-4 border-white flex items-center justify-center font-bold text-white whitespace-nowrap transition-all duration-1000" style="width: 0%"
+                                 role="progressbar" aria-label="Aeroplanes" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+                        </div>
+
+                        <!-- Légende -->
+                        <div class="cv-legend grid grid-cols-2 gap-6 mt-2">
+                            <div>
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="w-3 h-3 rounded-full bg-heli"></span>
+                                    <h4 class="font-bold text-heli">Helicopters</h4>
+                                </div>
+                                <div id="heuresHeli" class="cv-text text-sm text-gray-600">— h</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="flex items-center justify-end gap-2 mb-1">
+                                    <h4 class="font-bold text-plane">Aeroplanes</h4>
+                                    <span class="w-3 h-3 rounded-full bg-plane"></span>
+                                </div>
+                                <div id="heuresAvion" class="cv-text text-sm text-gray-600">— h</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Détail des heures de vol -->
+                <section class="cv-section">
+                    <h3 class="cv-section-title text-2xl font-bold text-gray-800 mb-2 border-b-2 border-air pb-1">Flight Hours by Type</h3>
+                    <div class="cv-table-wrap shadow-md rounded-lg overflow-hidden">
+                        <table class="w-full text-sm bg-white">
+                            <thead class="bg-gray-700 text-white">
+                                <tr>
+                                    <th class="py-1.5 px-3 text-left font-semibold">Type</th>
+                                    <th class="py-1.5 px-2 text-center font-semibold">Total</th>
+                                    <th class="py-1.5 px-2 text-center font-semibold">PIC</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableauHeures" class="divide-y divide-gray-100"></tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Pied de page -->
+        <div class="gradient-bg cv-footer text-white text-center p-6 text-sm">
+            <p>Available immediately • Open to relocation in France and across Europe</p>
+        </div>
+    </div>
+
+    <script>
+        /* =====================================================
+           DONNÉES : seule partie à modifier pour mettre à jour
+           les heures. Tous les totaux sont calculés ensuite.
+           ===================================================== */
+        const donneesPilote = {
+            nom: "Wilfried METAIS",
+            titre: "Professional Helicopter and Aeroplane Pilot",
+            infos: "37 years old - French - Full driving licence",
+            email: "metais.wilfried@hotmail.com",
+            telephone: "+33 6 79 38 15 06",
+            localisation: "Valence, France",
+
+            helicopteres: [
+                { type: "R22/R44",  totales: 200, pic: 109, nuit: 10, ifr: 0 },
+                { type: "H500",     totales:  34, pic:  21, nuit:  0, ifr: 0 },
+                { type: "Bell 206", totales: 265, pic: 256, nuit:  3, ifr: 0 },
+                { type: "AS350",    totales: 140, pic: 111, nuit:  0, ifr: 0 }
+            ],
+            avions: [
+                { type: "SEP",        totales: 148, pic: 79, nuit: 5, ifr:  0 },
+                { type: "MEP",        totales:  31, pic:  3, nuit: 0, ifr: 24 },
+                { type: "Simulateur", totales:  65, pic: 65, nuit: 0, ifr: 65 }
+            ]
+        };
+
+        /* ---------- Utilitaires ---------- */
+        const $   = id => document.getElementById(id);
+        const fmt = n  => n.toLocaleString('en-GB');
+
+        const SIMULATEUR = "Simulateur";
+        const DUREE_BARRE = 1000;   // ms : doit correspondre à duration-1000 sur les barres
+
+        // Couleurs du tableau par catégorie (palette définie dans tailwind.config)
+        const STYLES = {
+            heli:  { bandeau: 'bg-heli-light text-heli',   bord: 'border-heli',  survol: 'hover:bg-heli-light/50',  texte: 'text-heli'  },
+            plane: { bandeau: 'bg-plane-light text-plane', bord: 'border-plane', survol: 'hover:bg-plane-light/50', texte: 'text-plane' }
+        };
+
+        /* ---------- Calculs ---------- */
+        const sommer = liste => liste.reduce((acc, v) => ({
+            totales: acc.totales + v.totales,
+            pic:     acc.pic     + v.pic,
+            nuit:    acc.nuit    + v.nuit,
+            ifr:     acc.ifr     + v.ifr
+        }), { totales: 0, pic: 0, nuit: 0, ifr: 0 });
+
+        // Le simulateur est affiché à part et exclu de tous les totaux
+        const avionsReels = () => donneesPilote.avions.filter(a => a.type !== SIMULATEUR);
+
+        function calculerTotaux() {
+            const totalHeli  = sommer(donneesPilote.helicopteres);
+            const totalAvion = sommer(avionsReels());
+            const totalGeneral = totalHeli.totales + totalAvion.totales;
+            const pctHeli  = Math.round((totalHeli.totales / totalGeneral) * 100);
+            const pctAvion = 100 - pctHeli;   // garantit un total de 100 %
+            return { totalHeli, totalAvion, totalGeneral, pctHeli, pctAvion };
+        }
+
+        /* ---------- Affichage ---------- */
+        function afficherIdentite() {
+            $('nomPilote').textContent   = donneesPilote.nom;
+            $('titrePilote').textContent = donneesPilote.titre;
+            $('infosPilote').textContent = donneesPilote.infos;
+            $('emailPilote').textContent = donneesPilote.email;
+            $('telPilote').textContent   = donneesPilote.telephone;
+            $('locPilote').textContent   = donneesPilote.localisation;
+        }
+
+        function afficherStats({ totalHeli, totalAvion, totalGeneral }) {
+            $('statTotal').textContent = fmt(totalGeneral);
+            $('statHeli').textContent  = fmt(totalHeli.totales);
+            $('statAvion').textContent = fmt(totalAvion.totales);
+        }
+
+        function afficherRepartition({ totalHeli, totalAvion, totalGeneral, pctHeli, pctAvion }) {
+            $('heuresHeli').textContent  = fmt(totalHeli.totales)  + ' h';
+            $('heuresAvion').textContent = fmt(totalAvion.totales) + ' h';
+
+            // Pourcentages dans les barres : invisibles au départ, révélés une fois la barre déployée
+            // (visibles d'office à l'impression)
+            const texteBarre = pct => `<span class="opacity-0 transition-opacity duration-500 print:opacity-100">${pct} %</span>`;
+            $('barHeli').innerHTML  = texteBarre(pctHeli);
+            $('barAvion').innerHTML = texteBarre(pctAvion);
+
+            // Largeurs exactes (pas les pourcentages arrondis) ; setTimeout = animation au chargement
+            const largeurHeli = (totalHeli.totales / totalGeneral) * 100;
+            setTimeout(() => {
+                $('barHeli').style.width  = largeurHeli + '%';
+                $('barAvion').style.width = (100 - largeurHeli) + '%';
+                $('barHeli').setAttribute('aria-valuenow',  pctHeli);
+                $('barAvion').setAttribute('aria-valuenow', pctAvion);
+            }, 100);
+
+            // Révélation du texte à la fin de l'animation (durée de la barre : duration-1000 = 1000 ms)
+            setTimeout(() => {
+                document.querySelectorAll('#barHeli span, #barAvion span')
+                    .forEach(s => s.classList.replace('opacity-0', 'opacity-100'));
+            }, 100 + DUREE_BARRE);
+        }
+
+        // Lignes du tableau (cv-band / cv-sub = repères pour la feuille d'impression)
+        const ligne = (t, s) => `<tr class="${s.survol} transition-colors">
+            <td class="py-1.5 px-3 font-medium text-gray-800">${t.type}</td>
+            <td class="py-1.5 px-2 text-center">${t.totales}</td>
+            <td class="py-1.5 px-2 text-center">${t.pic}</td></tr>`;
+
+        // Bandeau de catégorie : bordure épaisse au-dessus + totaux
+        const bandeau = (titre, tot, s) => `<tr class="cv-band ${s.bandeau} font-bold">
+            <td class="py-1.5 px-3 border-t-4 ${s.bord}">${titre}</td>
+            <td class="py-1.5 px-2 text-center border-t-4 ${s.bord}">${fmt(tot.totales)}</td>
+            <td class="py-1.5 px-2 text-center border-t-4 ${s.bord}">${fmt(tot.pic)}</td></tr>`;
+
+        // Sous-ligne discrète (Nuit, IFR, Simulateur)
+        const sousLigne = (label, valeur, s) => `<tr class="cv-sub bg-gray-50 italic ${s.texte}">
+            <td class="py-1 px-3 pl-6">↳ ${label}</td>
+            <td class="py-1 px-2 text-center">${valeur}</td>
+            <td class="py-1 px-2 text-center">–</td></tr>`;
+
+        function afficherTableau({ totalHeli, totalAvion }) {
+            const simu = donneesPilote.avions.find(a => a.type === SIMULATEUR);
+
+            const groupeHeli =
+                bandeau('Helicopters', totalHeli, STYLES.heli) +
+                donneesPilote.helicopteres.map(h => ligne(h, STYLES.heli)).join('') +
+                sousLigne('Night', totalHeli.nuit, STYLES.heli) +
+                (totalHeli.ifr > 0 ? sousLigne('IFR', totalHeli.ifr, STYLES.heli) : '');
+
+            const groupeAvion =
+                bandeau('Aeroplanes', totalAvion, STYLES.plane) +
+                avionsReels().map(a => ligne(a, STYLES.plane)).join('') +
+                sousLigne('Night', totalAvion.nuit, STYLES.plane) +
+                sousLigne('IFR', totalAvion.ifr, STYLES.plane) +
+                (simu ? sousLigne('Simulator (not included in totals)', simu.totales, STYLES.plane) : '');
+
+            $('tableauHeures').innerHTML = groupeHeli + groupeAvion;
+        }
+
+        function afficherDonnees() {
+            const totaux = calculerTotaux();
+            afficherIdentite();
+            afficherStats(totaux);
+            afficherRepartition(totaux);
+            afficherTableau(totaux);
+        }
+
+        window.addEventListener('load', afficherDonnees);
+    </script>
+</body>
+</html>
