@@ -52,18 +52,43 @@
         }
     </style>
 </head>
-<body class="bg-gray-900 p-8">
+<body class="bg-gray-400 p-8">
 
-    <button id="print-btn" onclick="window.print()"
-        style="display:flex;position:fixed;bottom:2rem;right:2rem;z-index:100;"
-        class="items-center gap-2 gradient-bg text-white px-5 py-3 rounded-full shadow-lg font-semibold text-sm hover:opacity-90 transition-opacity cursor-pointer">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/>
-        </svg>
-        Imprimer
-    </button>
+    <!-- Barre d'actions (masquée à l'impression) -->
+    <div class="max-w-5xl mx-auto mb-3 flex justify-end print:hidden">
+        <div class="inline-flex items-center gap-1 bg-white rounded-full shadow-md border border-air-border p-1">
 
-    <div class="lm-wrapper max-w-3xl mx-auto bg-white shadow-2xl rounded-lg overflow-hidden">
+            <!-- Langue -->
+            <a href="en.html" hreflang="en" lang="en" title="English version" aria-label="English version"
+            class="flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-semibold text-air hover:bg-air-light transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="24" height="12" class="block rounded-sm">
+                    <clipPath id="s"><path d="M0,0 v30 h60 v-30 z"/></clipPath>
+                    <clipPath id="t"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath>
+                    <g clip-path="url(#s)">
+                        <path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
+                        <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
+                        <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#C8102E" stroke-width="4"/>
+                        <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
+                        <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/>
+                    </g>
+                </svg>
+                EN
+            </a>
+
+            <span class="w-px h-5 bg-air-border" aria-hidden="true"></span>
+
+            <!-- Impression -->
+            <button onclick="window.print()"
+                    class="flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-semibold text-white gradient-bg hover:opacity-90 transition-opacity cursor-pointer">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/>
+                </svg>
+                Imprimer
+            </button>
+        </div>
+    </div>
+
+    <div class="lm-wrapper max-w-4xl mx-auto bg-white shadow-2xl rounded-lg overflow-hidden">
 
         <!-- En-tête -->
         <div class="gradient-bg lm-header text-white p-6">
